@@ -1,0 +1,8 @@
+.list-video .card,
+.list-video .card .row,
+.list-video .card .row .col-md-3,
+.list-video .card .row .col-md-1,
+.list-video .card img,
+.list-video .card .row .col-md-8 {
+    height: 130px;
+}
