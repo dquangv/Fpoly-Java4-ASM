@@ -56,7 +56,8 @@
 							<p>1</p>
 						</div>
 						<div class="col-md-3">
-							<img src="../img/22.jpg" class="img-fluid rounded-start" alt="...">
+							<img src="../img/22.jpg" class="img-fluid rounded-start"
+								alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -81,7 +82,8 @@
 							<p>2</p>
 						</div>
 						<div class="col-md-3">
-							<img src="../img/29.jpg" class="img-fluid rounded-start" alt="...">
+							<img src="../img/29.jpg" class="img-fluid rounded-start"
+								alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -106,7 +108,8 @@
 							<p>3</p>
 						</div>
 						<div class="col-md-3">
-							<img src="../img/52.jpg" class="img-fluid rounded-start" alt="...">
+							<img src="../img/52.jpg" class="img-fluid rounded-start"
+								alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -131,7 +134,8 @@
 							<p>4</p>
 						</div>
 						<div class="col-md-3">
-							<img src="../img/75.jpg" class="img-fluid rounded-start" alt="...">
+							<img src="../img/75.jpg" class="img-fluid rounded-start"
+								alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
@@ -156,7 +160,8 @@
 							<p>5</p>
 						</div>
 						<div class="col-md-3">
-							<img src="../img/87.jpg" class="img-fluid rounded-start" alt="...">
+							<img src="../img/87.jpg" class="img-fluid rounded-start"
+								alt="...">
 						</div>
 						<div class="col-md-8">
 							<div class="card-body">
