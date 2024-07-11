@@ -350,7 +350,7 @@
                         <button class="button-submit align-items-center mx-auto" style="width: 300px;">Đăng
                             nhập</button>
                     </div>
-                    <p class="p">Chưa có tài khoản? <a style="text-decoration: none;" href="#!dangky"><span class="span"
+                    <p class="p">Chưa có tài khoản? <a style="text-decoration: none;" href="/fpoly/views/dangky"><span class="span"
                                 style="color: #ffffff;">Đăng Ký</span></a>
 
                     </p>
