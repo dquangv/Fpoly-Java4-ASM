@@ -1,0 +1,120 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<!doctype html>
+<html lang="en">
+
+<head>
+    <title>Tài khoản</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+<style>
+    .form-control{
+        background-color: #595656;
+    }
+    label{
+        color: white;
+    }
+</style>
+   
+
+</head>
+
+<body  style="background-color: rgb(44, 43, 43);">
+    <div class="container">
+        <div class="row gutters">
+            <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
+                <div class="card h-100" style="background-color: #595656;">
+                    <div class="card-body">
+                        <div class="account-settings">
+                            <div class="user-profile">
+                                <div class="user-avatar">
+                                    <img class="img-fluid" src="IMAGE/account.png" alt="{{user.name}}">
+                                </div>
+                                <h5 class="user-name text-center" style="color: #ffffff;">USER NAME</h5>
+                                <h6 class="user-email text-center" style="color: #ffffff;">Email</h6>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-9 col-lg-9 col-md-12 col-sm-12 col-12">
+                <div class="card h-100" style="background-color: #595656;">
+                    <div class="card-body">
+                        <div class="row gutters">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mb-2 fw-bold fs-5" style="color: white;">Thông tin cá nhân</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="fullName">Họ và tên</label>
+                                    <input type="text" class="form-control" id="fullName" ng-model="user.name">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="eMail">Email</label>
+                                    <input type="email" class="form-control" id="eMail" ng-model="user.email">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="phone">Số điện thoại</label>
+                                    <input type="text" class="form-control" id="phone" ng-model="user.phone">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row gutters mt-2">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <button type="button" class="btn" style="background-color: #e51b1b; color: white;" ng-click="updateProfile()">Cập nhật</button>
+                                    <button type="button" class="btn btn-secondary" ng-click="logout()">Đăng xuất</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters mt-5">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <h6 class="mt-3 mb-2 fw-bold fs-5" style="color: white;">Đổi mật khẩu</h6>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="currentPassword">Mật khẩu hiện tại</label>
+                                    <input type="password" class="form-control" id="currentPassword" ng-model="passwordData.currentPassword">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="newPassword">Mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="newPassword" ng-model="passwordData.newPassword">
+                                </div>
+                            </div>
+                            <div class="col-xl-6 col-lg-6 col-md-6 col-sm-6 col-12">
+                                <div class="form-group">
+                                    <label for="confirmNewPassword">Xác nhận mật khẩu mới</label>
+                                    <input type="password" class="form-control" id="confirmNewPassword" ng-model="passwordData.confirmNewPassword">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row gutters mt-2">
+                            <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
+                                <div class="text-right">
+                                    <button type="button" class="btn" style="background-color: #e51b1b; color: white;">Đổi mật khẩu</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="angular.js"></script>
+</body>
+
+
+</html>
