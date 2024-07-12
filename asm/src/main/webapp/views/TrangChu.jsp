@@ -10,20 +10,16 @@
         <div class="carousel-item active ml-4">
           <div class="overflow-auto d-flex gap-2 align-items-center mx-lg-4 px-lg-4">
             <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
-            <button class="btn">Tất cả</button>
+            <button class="btn">Âm nhạc</button>
+            <button class="btn">Thể thao</button>
+            <button class="btn">Đời sống</button>
+            <button class="btn">Học tập</button>
+            <button class="btn">Trò chơi</button>
+            <button class="btn">Danh sách kết hợp</button>
+            <button class="btn">Trực tiếp</button>
+            <button class="btn">Đề xuất mới</button>
+            <button class="btn">Thịnh hành</button>
+            <button class="btn">Phiêu lưu</button>
           </div>
         </div>
         <div class="carousel-item">

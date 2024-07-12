@@ -19,7 +19,8 @@
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />
-            Thông tin cá nhân
+            Thông tin <br />
+            cá nhân
           </button>
          </a>
           <a href="${views}/watched">
@@ -29,7 +30,7 @@
           >
             <i class="bi bi-youtube"></i> <br />
 
-            Video đã xem
+            Video <br />đã xem
           </button>
           </a>
          <a href = "${views}/favorite_video">
@@ -39,7 +40,7 @@
           >
             <i class="bi bi-youtube"></i> <br />
 
-            Video đã thích
+            Video <br />đã thích
           </button>
          </a>
         <a href="${views}/create_update">
