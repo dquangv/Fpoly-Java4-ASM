@@ -1,15 +1,21 @@
 package controller;
 
 import java.io.IOException;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.Video;
+import com.dao.VideoDAO;
+
 @WebServlet({ "/views/TrangChu", "/views/watched", "/views/thongke", "/views/favorite_video", "/views/details",
 		"/views/create_update", "/views/dangky", "/views/dangnhap", "/views/thongtincanhan" })
 public class viewPages extends HttpServlet {
+	 VideoDAO vidDao = new VideoDAO();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURI();
@@ -17,6 +23,12 @@ public class viewPages extends HttpServlet {
 
 		if (url.contains("TrangChu")) {
 			viewPath = "/views/TrangChu.jsp";
+			List<Video> listViDeo = vidDao.findAll();
+        	if (listViDeo != null && !listViDeo.isEmpty()) {
+        	} else {
+        	    System.out.println("List is empty or null");
+        	}
+        	req.setAttribute("listViDeo", listViDeo);
 		} else if (url.contains("watched")) {
 			viewPath = "/views/watched.jsp";
 		} else if (url.contains("thongke")) {
