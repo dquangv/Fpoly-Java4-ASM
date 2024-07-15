@@ -20,13 +20,13 @@ public class Video {
 	@Column(name = "Title")
 	private String title;
 	@Column(name = "Poster")
-	private String Poster;
+	private String poster;
 	@Column(name = "Views")
 	private Long views;
 	@Column(name = "Description")
 	private String description;
 	@Column(name = "Active")
-	private boolean Active;
+	private boolean active;
 	@OneToMany(mappedBy = "video")
 	List<Favorite> favorites;
 
@@ -47,11 +47,11 @@ public class Video {
 	}
 
 	public String getPoster() {
-		return Poster;
+		return poster;
 	}
 
 	public void setPoster(String poster) {
-		Poster = poster;
+		poster = poster;
 	}
 
 	public Long getViews() {
@@ -79,11 +79,11 @@ public class Video {
 	}
 
 	public boolean isActive() {
-		return Active;
+		return active;
 	}
 
 	public void setActive(boolean active) {
-		Active = active;
+		active = active;
 	}
 
 }

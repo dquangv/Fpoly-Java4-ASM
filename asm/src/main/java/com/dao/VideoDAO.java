@@ -55,6 +55,7 @@ public class VideoDAO {
 			
 			for (Video video : list) {
 				System.out.println(video.getId());
+				System.out.println(video.getPoster());
 				System.out.println(video.getTitle());
 			}
 			
