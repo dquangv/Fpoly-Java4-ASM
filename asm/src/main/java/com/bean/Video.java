@@ -2,6 +2,7 @@ package com.bean;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,15 @@ public class Video {
 	private boolean active;
 	@Column(name = "Link")
 	private String link;
+	
+	@Override
+	public String toString() {
+		return "Video [id=" + id + ", title=" + title + ", poster=" + poster + ", views=" + views + ", description="
+				+ description + ", active=" + active + ", link=" + link;
+	}
 
+	@OneToMany(mappedBy = "video")
+	List<Watched> favorites;
 	public String getLink() {
 		return link;
 	}
@@ -38,8 +47,7 @@ public class Video {
 		this.link = link;
 	}
 
-	@OneToMany(mappedBy = "video")
-	List<Watched> favorites;
+	
 
 	public int getId() {
 		return id;
@@ -94,7 +102,7 @@ public class Video {
 	}
 
 	public void setActive(boolean active) {
-		active = active;
+		this.active = active;
 	}
 
 }
