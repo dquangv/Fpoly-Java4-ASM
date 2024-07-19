@@ -1,0 +1,13 @@
+{
+    "Servers": {
+        "1": {
+            "Name": "CONNECTION_RemoteDatabase",
+            "Group": "ASM-JAVA4",
+            "Host": "pg-1c423402-buiminhquang2002-69f9.i.aivencloud.com",
+            "Port": 13281,
+            "MaintenanceDB": "defaultdb",
+            "Username": "avnadmin",
+            "SSLMode": "require"
+        }
+    }
+}
