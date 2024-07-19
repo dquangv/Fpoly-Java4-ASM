@@ -48,11 +48,11 @@ public class viewPages extends HttpServlet {
 			viewPath = "/views/details.jsp";
 		} else if (url.contains("thongtincanhan")) {
 			viewPath = "/views/thongtincanhan.jsp";
-		} else if (url.contains("dangnhap")) {
-			req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+		} else if (url.contains("login")) {
+			req.getRequestDispatcher("views/dangnhap.jsp").forward(req, resp);
 			return;
 		} else if (url.contains("dangky")) {
-			req.getRequestDispatcher("/views/dangky.jsp").forward(req, resp);
+			req.getRequestDispatcher("views/dangky.jsp").forward(req, resp);
 			return;
 		}
 

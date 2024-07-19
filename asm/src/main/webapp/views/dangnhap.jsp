@@ -362,7 +362,7 @@ to {
 					</div>
 					<p class="p">
 						Chưa có tài khoản? <a style="text-decoration: none;"
-							href="/fpoly/views/dangky"><span class="span"
+							href="dangkyy"><span class="span"
 							style="color: #ffffff;">Đăng Ký</span></a>
 
 					</p>
