@@ -25,7 +25,7 @@ public class User {
 	@Column(name = "Admin")
 	private boolean admin;
 	@OneToMany(mappedBy = "user")
-	List<Favorite> favorites;
+	List<Watched> favorites;
 
 	public int getId() {
 		return id;

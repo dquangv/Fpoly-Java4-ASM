@@ -27,8 +27,19 @@ public class Video {
 	private String description;
 	@Column(name = "Active")
 	private boolean active;
+	@Column(name = "Link")
+	private String link;
+
+	public String getLink() {
+		return link;
+	}
+
+	public void setLink(String link) {
+		this.link = link;
+	}
+
 	@OneToMany(mappedBy = "video")
-	List<Favorite> favorites;
+	List<Watched> favorites;
 
 	public int getId() {
 		return id;
@@ -62,11 +73,11 @@ public class Video {
 		this.views = views;
 	}
 
-	public List<Favorite> getFavorites() {
+	public List<Watched> getFavorites() {
 		return favorites;
 	}
 
-	public void setFavorites(List<Favorite> favorites) {
+	public void setFavorites(List<Watched> favorites) {
 		this.favorites = favorites;
 	}
 

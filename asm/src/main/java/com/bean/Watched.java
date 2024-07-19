@@ -2,6 +2,7 @@ package com.bean;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,8 +15,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Favorite", uniqueConstraints = { @UniqueConstraint(columnNames = { "VideoId", "UserId" }) })
-public class Favorite {
+@Table(name = "Watched", uniqueConstraints = { @UniqueConstraint(columnNames = { "VideoId", "UserId" }) })
+public class Watched {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
@@ -26,6 +27,10 @@ public class Favorite {
 	@JoinColumn(name = "VideoId")
 	private Video video;
 	@Temporal(TemporalType.DATE)
+	private Date watchDate = new Date();
+	@Column(name = "isLiked")
+	private boolean isLiked;
+	@Temporal(TemporalType.DATE)
 	private Date LikeDate = new Date();
 
 	public int getId() {
@@ -34,6 +39,22 @@ public class Favorite {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public Date getWatchDate() {
+		return watchDate;
+	}
+
+	public void setWatchDate(Date watchDate) {
+		this.watchDate = watchDate;
+	}
+
+	public boolean isLiked() {
+		return isLiked;
+	}
+
+	public void setLiked(boolean isLiked) {
+		this.isLiked = isLiked;
 	}
 
 	public User getUser() {
