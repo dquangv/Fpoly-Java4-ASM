@@ -13,7 +13,7 @@ import org.apache.commons.beanutils.BeanUtils;
 import com.bean.User;
 import com.dao.UserDao;
 
-@WebServlet("/dangky")
+@WebServlet("/views/dangkyy")
 public class AccountServlet extends HttpServlet {
 //	@Override
 //    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {

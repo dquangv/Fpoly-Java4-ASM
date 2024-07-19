@@ -298,7 +298,7 @@ to {
 		<div class="container">
 			<h1 class="mt-5 text-center pb-5" style="color: #eee;">Đăng ký</h1>
 			<div class="row">
-				<form class="form row" action="/asm/dangky" method="POST">
+				<form class="form row" action="dangkyy" method="POST">
 
 					<div class="flex-column">
 						<label>Họ và tên</label>
