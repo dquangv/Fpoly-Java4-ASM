@@ -9,13 +9,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.bean.User;
 import com.bean.Video;
+import com.dao.UserDao;
 import com.dao.VideoDAO;
 
 @WebServlet({ "/views/TrangChu", "/views/watched", "/views/thongke", "/views/favorite_video", "/views/details",
 		"/views/create_update", "/views/dangky", "/views/dangnhap", "/views/thongtincanhan" })
 public class viewPages extends HttpServlet {
 	 VideoDAO vidDao = new VideoDAO();
+	 UserDao userDao = new UserDao();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		String url = req.getRequestURI();
@@ -28,6 +31,8 @@ public class viewPages extends HttpServlet {
         	} else {
         	    System.out.println("List is empty or null");
         	}
+        	User user = userDao.getUserByRole(true);
+        	req.setAttribute("user",user);
         	req.setAttribute("listViDeo", listViDeo);
 		} else if (url.contains("watched")) {
 			viewPath = "/views/watched.jsp";

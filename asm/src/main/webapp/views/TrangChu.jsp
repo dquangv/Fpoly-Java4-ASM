@@ -51,20 +51,22 @@
 	<div class="row my-4">
 		<c:forEach var="item" items="${listViDeo}">
 			<div class="col-lg-3 col-sm-6 col-12 mb-2">
-				<div
-					style="border: 0 !important; background-color: transparent !important; color: #fff;"
-					class="card p-0">
-					<div class="w-100" style="border-radius: 4px; overflow: hidden">
-						<img class="img-fluid" src="../img/${item.poster}" alt="">
+					<a href="/fpoly/views/details" class="text-decoration-none">
+					<div
+						style="border: 0 !important; background-color: transparent !important; color: #fff;"
+						class="card p-0">
+						<div class="w-100" style="border-radius: 4px; overflow: hidden">
+							<img class="img-fluid" src="../img/${item.poster}" alt="">
+						</div>
+						<div class="card-body p-0"
+							style="background: transparent !important">
+							<div class="text-truncate">${item.title}</div>
+							<h5 class="text-truncate text-secondary"style=" font-size: 12px">${user.fullname}</h5>
+							<h5 class="text-truncate text-secondary"style=" font-size: 12px">${item.views} lượt xem</h5>
+						</div>
 					</div>
-					<div class="card-body p-0"
-						style="background: transparent !important">
-						<div class="text-truncate">${item.title}</div>
-						<br /> <span class="text-truncate"
-							style="color: whitesmoke; font-size: 10px">${item.description}</span>
-					</div>
+				</a>
 				</div>
-			</div>
 		</c:forEach>
 	</div>
 </div>
