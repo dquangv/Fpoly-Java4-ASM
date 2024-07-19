@@ -13,11 +13,13 @@ public class UserDao {
 		UserDao userDao = new UserDao();
 		userDao.getUserByRole(true);
 	}
+	
 	@Override
 	protected void finalize() throws Throwable {
 		em.close();
 		super.finalize();
 	}
+	
 	public User getUserByRole(boolean role) {
 		em = JpaUtils.getEntityManager();
 		User user = null;
@@ -33,5 +35,25 @@ public class UserDao {
 			System.out.println("không truy vấn được user");
 		}
 		return user;
+	}
+	
+	public User create(User entity) {
+		em = JpaUtils.getEntityManager();
+		
+		try {
+			em.getTransaction().begin();
+			
+			em.persist(entity);
+			em.getTransaction().commit();
+			
+			return entity;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+			
+			return null;
+		} finally {
+			em.close();
+		}
 	}
 }
