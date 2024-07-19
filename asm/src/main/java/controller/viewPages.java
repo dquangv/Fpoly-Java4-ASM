@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -44,9 +45,20 @@ public class viewPages extends HttpServlet {
 		} else if (url.contains("favorite_video")) {
 			viewPath = "/views/favorite_video.jsp";
 		} else if (url.contains("details")) {
-			Video video = new Video();
-			List<Video> listViDeo = vidDao.findAll();
+			String path = req.getPathInfo();
+			int videoId = Integer.parseInt(path.substring(1));
+			Video video = vidDao.findById(videoId);
+
+			List<Video> allActiveVideos = vidDao.findAllActive();
+			List<Video> listViDeo = new ArrayList<>();
+
+			for (Video v : allActiveVideos) {
+				if (v.getId() != videoId) {
+					listViDeo.add(v);
+				}
+			}
 			req.setAttribute("listViDeo", listViDeo);
+			req.setAttribute("video", video);
 			viewPath = "/views/details.jsp";
 		} else if (url.contains("delete_video")) {
 
@@ -120,9 +132,10 @@ public class viewPages extends HttpServlet {
 				video.setPoster(fileName);
 				video.setActive(activate);
 				video.setDescription(description);
-
+				
 				vidDao.create(video);
 				System.out.println("Video tao thanh cong");
+
 			} else {
 				System.out.println("Video tao that bai");
 			}
@@ -153,7 +166,11 @@ public class viewPages extends HttpServlet {
 		Video video = vidDao.findById(videoId);
 		if (video != null) {
 			video.setActive(false);
-			vidDao.update(video);
+			if (vidDao.update(video)) {
+				request.setAttribute("alertMessage", "Xóa video thành công");
+			} else {
+				request.setAttribute("alertMessage", "Xóa video thất bại");
+			}
 		}
 
 	}
@@ -184,7 +201,7 @@ public class viewPages extends HttpServlet {
 			String activateParam = request.getParameter("activationOptions");
 
 			boolean activate = "yes".equals(activateParam);
-		
+
 			Video video = vidDao.findById(videoId);
 			if (video != null) {
 				video.setTitle(videoTitle);
@@ -194,7 +211,11 @@ public class viewPages extends HttpServlet {
 				}
 				video.setActive(activate);
 				video.setDescription(description);
-				vidDao.update(video);
+				if (vidDao.update(video)) {
+					request.setAttribute("alertMessage", "Cập nhật thành công");
+				} else {
+					request.setAttribute("alertMessage", "Cập nhật thất bại");
+				}
 
 			}
 		} catch (Exception ex) {

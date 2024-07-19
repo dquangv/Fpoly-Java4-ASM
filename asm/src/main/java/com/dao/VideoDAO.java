@@ -37,17 +37,17 @@ public class VideoDAO {
 		}
 	}
 
-	public Video update(Video entity) {
+	public boolean update(Video entity) {
 		em = JpaUtils.getEntityManager();
 		try {
 			em.getTransaction().begin();
 			em.merge(entity);
 			em.getTransaction().commit();
-			return entity;
+			return true;
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			e.printStackTrace();
-			return null;
+			return false;
 		} finally {
 			em.close();
 		}
@@ -87,7 +87,23 @@ public class VideoDAO {
 			String jpql = "select o from Video o";
 			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
 			list = query.getResultList();
-			
+
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+
+	public List<Video> findAllActive() {
+		em = JpaUtils.getEntityManager();
+		List<Video> list = null;
+		try {
+			String jpql = "SELECT o FROM Video o WHERE o.active = true";
+			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+			list = query.getResultList();
 			return list;
 		} catch (Exception e) {
 			e.printStackTrace();

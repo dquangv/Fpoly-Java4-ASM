@@ -70,7 +70,7 @@ public class Video {
 	}
 
 	public void setPoster(String poster) {
-		poster = poster;
+		this.poster = poster;
 	}
 
 	public Long getViews() {

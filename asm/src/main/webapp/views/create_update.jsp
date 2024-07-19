@@ -193,6 +193,12 @@
 	</div>
 </main>
 <script>
+	var alertMessage = "${alertMessage}";
+	
+	
+	if (alertMessage) {
+	    alert(alertMessage);
+	}
     document.querySelector('.image-wrapper').addEventListener('click', () => {
         document.querySelector('#test').click();
     });
