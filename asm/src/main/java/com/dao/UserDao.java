@@ -59,4 +59,24 @@ public class UserDao {
 		}
 		return user;
 	}
+	
+	public User create(User entity) {
+		em = JpaUtils.getEntityManager();
+		
+		try {
+			em.getTransaction().begin();
+			
+			em.persist(entity);
+			em.getTransaction().commit();
+			
+			return entity;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+			
+			return null;
+		} finally {
+			em.close();
+		}
+	}
 }

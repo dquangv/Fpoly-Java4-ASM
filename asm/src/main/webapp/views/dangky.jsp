@@ -298,10 +298,7 @@ to {
 		<div class="container">
 			<h1 class="mt-5 text-center pb-5" style="color: #eee;">Đăng ký</h1>
 			<div class="row">
-				<c:url var="url" value="/account" />
-				<form class="form row" ng-submit="register()"
-					name="registrationForm" ng-submit="register()"
-					action="${url}/dangky" method="POST">
+				<form class="form row" action="/asm/dangky" method="POST">
 
 					<div class="flex-column">
 						<label>Họ và tên</label>
@@ -382,8 +379,7 @@ to {
 					<div class="d-flex justify-content-center mt-3">
 						<button type="submit"
 							class="button-submit align-items-center mx-auto"
-							style="width: 300px;" formaction="${url}/dangky">Đăng
-							ký</button>
+							style="width: 300px;">Đăng ký</button>
 					</div>
 
 					<p class="p line">Hoặc tiếp tục với</p>
