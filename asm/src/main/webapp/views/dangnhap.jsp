@@ -362,7 +362,7 @@ to {
 					</div>
 					<p class="p">
 						Chưa có tài khoản? <a style="text-decoration: none;"
-							href="dangkyy"><span class="span"
+							href="signup"><span class="span"
 							style="color: #ffffff;">Đăng Ký</span></a>
 
 					</p>

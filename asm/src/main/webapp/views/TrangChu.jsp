@@ -51,7 +51,7 @@
 	<div class="row my-4">
 		<c:forEach var="item" items="${listViDeo}">
 			<div class="col-lg-3 col-sm-6 col-12 mb-2">
-					<a href="/fpoly/views/details" class="text-decoration-none">
+					<a href="details" class="text-decoration-none">
 					<div
 						style="border: 0 !important; background-color: transparent !important; color: #fff;"
 						class="card p-0">
