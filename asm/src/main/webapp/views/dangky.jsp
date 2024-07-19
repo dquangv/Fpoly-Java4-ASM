@@ -2,460 +2,331 @@
 	pageEncoding="UTF-8"%>
 <!doctype html>
 <html lang="en">
-
 <head>
-<title>Đăng ký</title>
-<meta charset="utf-8" />
-<meta name="viewport"
-	content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-
-<link
-	href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
-	crossorigin="anonymous" />
-<link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-<link rel="stylesheet"
-	href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
-<style>
-body {
-	overflow-x: hidden;
-	background-color: #000;
-}
-
-.logo-en-fill {
-	fill: #ff5b00;
-}
-
-.nav-link {
-	font-weight: bolder;
-	min-width: none
-}
-
-.nav-link:hover {
-	color: #FF5B00;
-}
-
-.navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
-	color: #FF5B00;
-}
-
-.dropdown:hover .dropdown-menu {
-	display: block;
-	animation: fadeIn 0.5s ease-in-out forwards;
-}
-
-.dropdown-item:hover {
-	color: #FF5B00;
-}
-
-.dropdown-item.active {
-	background-color: #FF5B00;
-}
-
-.dropdown-item.active:hover {
-	color: black;
-}
-
-@media ( min-width : 992px) {
-	.navbar.fixed-top {
-		position: fixed;
-		top: 0;
-		right: 0;
-		left: 0;
-		z-index: 1030;
-	}
-}
-
-.navbar-brand {
-	margin-left: 100px;
-}
-
-#vui {
-	top: 30%;
-	right: 54%;
-}
-
-#khamPha {
-	top: 40%;
-	left: 15%;
-}
-
-@
-keyframes fadeIn {from { opacity:0;
-	transform: translateY(-10px);
-}
-
-to {
-	opacity: 1;
-	transform: translateY(0);
-}
-
-}
-.btn-outline-success {
-	background-color: #ff5900cf;
-	color: #fff;
-}
-
-.btn-outline-success:hover {
-	background-color: #FF5B00;
-	color: #fff;
-}
-
-#dulich {
-	bottom: 30%;
-}
-
-.text-overlay {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
-	text-align: center;
-	color: white;
-}
-
-.text-overlay h1, .text-overlay h5 {
-	margin: 0;
-}
-
-@media ( max-width : 768px) {
-	.text-overlay h1 {
-		font-size: 1.5rem;
-	}
-	.text-overlay h5 {
-		font-size: 1rem;
-	}
-}
-
-#bg1 {
-	background-color: #333232;
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: auto;
-	overflow: hidden;
-	width: 100%;
-}
-
-#bg {
-	background-image:
-		url(https://res.klook.com/image/upload/v1488362758/aboutus/mission-bg.png);
-	background-color: #eee;
-	background-position: 50%;
-	background-repeat: no-repeat;
-	background-size: cover;
-	height: 400px;
-	overflow: hidden;
-	width: 100%;
-}
-
-.card-registration .select-input.form-control[readonly]:not([disabled])
-	{
-	font-size: 1rem;
-	line-height: 2.15;
-	padding-left: .75em;
-	padding-right: .75em;
-}
-
-.card-registration .select-arrow {
-	top: 13px;
-}
-
-.form {
-	display: flex;
-	flex-direction: column;
-	gap: 10px;
-	background-color: #4a4848;
-	padding: 30px;
-	width: 100%;
-	border-radius: 20px;
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-::placeholder {
-	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
-		Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-}
-
-.form button {
-	align-self: flex-end;
-}
-
-.flex-column>label {
-	color: #eee;
-	font-weight: 600;
-}
-
-.inputForm {
-	border: 1.5px solid #ecedec;
-	border-radius: 10px;
-	height: 50px;
-	display: flex;
-	align-items: center;
-	padding-left: 10px;
-	transition: 0.2s ease-in-out;
-}
-
-.input {
-	color: #eee;
-	margin-left: 10px;
-	border-radius: 10px;
-	border: none;
-	width: 85%;
-	height: 100%;
-	background-color: #4a4848;
-}
-
-.input:focus {
-	outline: none;
-}
-
-.inputForm:focus-within {
-	border: 1.5px solid #2d79f3;
-}
-
-.flex-row {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 10px;
-	justify-content: space-between;
-}
-
-.flex-row>div>label {
-	font-size: 14px;
-	color: rgb(255, 255, 255);
-	font-weight: 400;
-}
-
-.span {
-	font-size: 14px;
-	margin-left: 5px;
-	color: #2d79f3;
-	font-weight: 500;
-	cursor: pointer;
-}
-
-.button-submit {
-	margin: 20px 0 10px 0;
-	background-color: #e51b1b;
-	border: none;
-	color: white;
-	font-size: 15px;
-	font-weight: 500;
-	border-radius: 10px;
-	height: 50px;
-	width: 100%;
-	cursor: pointer;
-	transition: ease-in-out 0.3s;
-}
-
-.button-submit:hover {
-	background-color: #e51b1bb1;
-}
-
-.p {
-	text-align: center;
-	color: white;
-	font-size: 14px;
-	margin: 5px 0;
-}
-
-.btn1 {
-	margin-top: 10px;
-	width: 100%;
-	height: 50px;
-	border-radius: 10px;
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	font-weight: 500;
-	gap: 10px;
-	border: 1px solid #ededef;
-	background-color: white;
-	cursor: pointer;
-	transition: 0.2s ease-in-out;
-}
-
-.btn1:hover {
-	border: 1px solid #2d79f3;
-	;
-}
-
-.form-control:focus, .form-select:focus, .form-floating textarea:focus {
-	border-color: #FF5B00;
-	box-shadow: 0 0 0 0.25rem #ff590053;
-}
-</style>
-
+    <title>Đăng ký</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.css">
+    <style>
+        body {
+            overflow-x: hidden;
+            background-color: #000;
+        }
+        .logo-en-fill {
+            fill: #ff5b00;
+        }
+        .nav-link {
+            font-weight: bolder;
+            min-width: none
+        }
+        .nav-link:hover {
+            color: #FF5B00;
+        }
+        .navbar-nav .nav-link.active, .navbar-nav .nav-link.show {
+            color: #FF5B00;
+        }
+        .dropdown:hover .dropdown-menu {
+            display: block;
+            animation: fadeIn 0.5s ease-in-out forwards;
+        }
+        .dropdown-item:hover {
+            color: #FF5B00;
+        }
+        .dropdown-item.active {
+            background-color: #FF5B00;
+        }
+        .dropdown-item.active:hover {
+            color: black;
+        }
+        @media ( min-width : 992px) {
+            .navbar.fixed-top {
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                z-index: 1030;
+            }
+        }
+        .navbar-brand {
+            margin-left: 100px;
+        }
+        #vui {
+            top: 30%;
+            right: 54%;
+        }
+        #khamPha {
+            top: 40%;
+            left: 15%;
+        }
+        @
+        keyframes fadeIn {from { opacity:0;
+            transform: translateY(-10px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+        .btn-outline-success {
+            background-color: #ff5900cf;
+            color: #fff;
+        }
+        .btn-outline-success:hover {
+            background-color: #FF5B00;
+            color: #fff;
+        }
+        #dulich {
+            bottom: 30%;
+        }
+        .text-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            color: white;
+        }
+        .text-overlay h1, .text-overlay h5 {
+            margin: 0;
+        }
+        @media ( max-width : 768px) {
+            .text-overlay h1 {
+                font-size: 1.5rem;
+            }
+            .text-overlay h5 {
+                font-size: 1rem;
+            }
+        }
+        #bg1 {
+            background-color: #333232;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: auto;
+            overflow: hidden;
+            width: 100%;
+        }
+        #bg {
+            background-image: url(https://res.klook.com/image/upload/v1488362758/aboutus/mission-bg.png);
+            background-color: #eee;
+            background-position: 50%;
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 400px;
+            overflow: hidden;
+            width: 100%;
+        }
+        .card-registration .select-input.form-control[readonly]:not([disabled]) {
+            font-size: 1rem;
+            line-height: 2.15;
+            padding-left: .75em;
+            padding-right: .75em;
+        }
+        .card-registration .select-arrow {
+            top: 13px;
+        }
+        .form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background-color: #4a4848;
+            padding: 30px;
+            width: 100%;
+            border-radius: 20px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        ::placeholder {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .form button {
+            align-self: flex-end;
+        }
+        .flex-column>label {
+            color: #eee;
+            font-weight: 600;
+        }
+        .inputForm {
+            border: 1.5px solid #ecedec;
+            border-radius: 10px;
+            height: 50px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+            transition: 0.2s ease-in-out;
+        }
+        .input {
+            color: #eee;
+            margin-left: 10px;
+            border-radius: 10px;
+            border: none;
+            width: 85%;
+            height: 100%;
+            background-color: #4a4848;
+        }
+        .input:focus {
+            outline: none;
+        }
+        .inputForm:focus-within {
+            border: 1.5px solid #2d79f3;
+        }
+        .flex-row {
+            display: flex;
+            flex-direction: row;
+            align-items: center;
+            gap: 10px;
+            justify-content: space-between;
+        }
+        .flex-row>div>label {
+            font-size: 14px;
+            color: rgb(255, 255, 255);
+            font-weight: 400;
+        }
+        .span {
+            font-size: 14px;
+            margin-left: 5px;
+            color: #2d79f3;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .button-submit {
+            margin: 20px 0 10px 0;
+            background-color: #e51b1b;
+            border: none;
+            color: white;
+            font-size: 15px;
+            font-weight: 500;
+            border-radius: 10px;
+            height: 50px;
+            width: 100%;
+            cursor: pointer;
+            transition: ease-in-out 0.3s;
+        }
+        .button-submit:hover {
+            background-color: #e51b1bb1;
+        }
+        .p {
+            text-align: center;
+            color: white;
+            font-size: 14px;
+            margin: 5px 0;
+        }
+        .btn1 {
+            margin-top: 10px;
+            width: 100%;
+            height: 50px;
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-weight: 500;
+            gap: 10px;
+            border: 1px solid #ededef;
+            background-color: white;
+            cursor: pointer;
+            transition: 0.2s ease-in-out;
+        }
+        .btn1:hover {
+            border: 1px solid #2d79f3;
+            ;
+        }
+        .form-control:focus, .form-select:focus, .form-floating textarea:focus {
+            border-color: #FF5B00;
+            box-shadow: 0 0 0 0.25rem #ff590053;
+        }
+    </style>
 </head>
-
 <body>
-	<div class="container-fluid pb-5" id="bg1">
-		<div class="container">
-			<h1 class="mt-5 text-center pb-5" style="color: #eee;">Đăng ký</h1>
-			<div class="row">
-				<form class="form row" action="signup" method="POST">
+    <div class="container-fluid pb-5" id="bg1">
+        <div class="container">
+            <h1 class="mt-5 text-center pb-5" style="color: #eee;">Đăng ký</h1>
+            <div class="row">
+                <form class="form row" action="signup" method="POST" onsubmit="return validateForm()">
 
-					<div class="flex-column">
-						<label>Họ và tên</label>
-					</div>
-					<div class="inputForm">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
-							stroke-linecap="round" stroke-linejoin="round">
-                            <path
-								d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                    <div class="flex-column">
+                        <label>Họ và tên</label>
+                    </div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
                             <circle cx="12" cy="7" r="4"></circle>
                         </svg>
+                        <input class="input" id="fullName" name="fullname" type="text" placeholder="Nguyễn Văn A" />
+                    </div>
 
-						<input type="text" class="input" name="fullname"
-							placeholder="Họ và tên" ng-model="user.name" ng-required="true">
-					</div>
-
-					<div class="flex-column">
-						<label>Email</label>
-					</div>
-					<div class="inputForm">
-						<svg height="20" viewBox="0 0 32 32" width="20"
-							xmlns="http://www.w3.org/2000/svg">
-                            <g id="Layer_3" data-name="Layer 3">
-                                <path
-								d="m30.853 13.87a15 15 0 0 0 -29.729 4.082 15.1 15.1 0 0 0 12.876 12.918 15.6 15.6 0 0 0 2.016.13 14.85 14.85 0 0 0 7.715-2.145 1 1 0 1 0 -1.031-1.711 13.007 13.007 0 1 1 5.458-6.529 2.149 2.149 0 0 1 -4.158-.759v-10.856a1 1 0 0 0 -2 0v1.726a8 8 0 1 0 .2 10.325 4.135 4.135 0 0 0 7.83.274 15.2 15.2 0 0 0 .823-7.455zm-14.853 8.13a6 6 0 1 1 6-6 6.006 6.006 0 0 1 -6 6z"
-								fill="white">
-                                </path>
-                            </g>
+                    <div class="flex-column">
+                        <label>Email</label>
+                    </div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                            <polyline points="22,6 12,13 2,6"></polyline>
                         </svg>
-						<input type="email" class="input" name="email" placeholder="Email"
-							ng-model="user.email" ng-required="true">
-					</div>
+                        <input class="input" id="email" name="email" type="email" placeholder="abc@gmail.com" />
+                    </div>
 
-					<div class="flex-column">
-						<label>Mật khẩu</label>
-					</div>
-					<div class="inputForm">
-						<svg height="20" viewBox="-64 0 512 512" width="20"
-							xmlns="http://www.w3.org/2000/svg">
-                            <path
-								d="m336 512h-288c-26.453125 0-48-21.523438-48-48v-224c0-26.476562 21.546875-48 48-48h288c26.453125 0 48 21.523438 48 48v224c0 26.476562-21.546875 48-48 48zm-288-288c-8.8125 0-16 7.167969-16 16v224c0 8.832031 7.1875 16 16 16h288c8.8125 0 16-7.167969 16-16v-224c0-8.832031-7.1875-16-16-16zm0 0"
-								fill="white"></path>
-
-                            <path
-								d="m304 224c-8.832031 0-16-7.167969-16-16v-80c0-52.929688-43.070312-96-96-96s-96 43.070312-96 96v80c0 8.832031-7.167969 16-16 16s-16-7.167969-16-16v-80c0-70.59375 57.40625-128 128-128s128 57.40625 128 128v80c0 8.832031-7.167969 16-16 16zm0 0"
-								fill="white">
-                            </path>
+                    <div class="flex-column">
+                        <label>Mật khẩu</label>
+                    </div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
-						<input type="password" class="input" name="password"
-							placeholder="********" ng-model="user.password"
-							ng-required="true">
-					</div>
+                        <input class="input" id="password" name="password" type="password" placeholder="*****" />
+                    </div>
 
-					<div class="flex-column">
-						<label>Xác nhận mật khẩu</label>
-					</div>
-					<div class="inputForm">
-						<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
-							viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2"
-							stroke-linecap="round" stroke-linejoin="round">
-                            <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                            <polyline points="22 4 12 14.01 9 11.01"></polyline>
+                    <div class="flex-column">
+                        <label>Nhập lại mật khẩu</label>
+                    </div>
+                    <div class="inputForm">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
                         </svg>
-						<input type="password" class="input" name="confirmPassword"
-							placeholder="********" ng-model="confirmPassword"
-							ng-required="true" ng-pattern="user.password">
-					</div>
+                        <input class="input" id="confirmPassword" name="repassword" type="password" placeholder="*****" />
+                    </div>
 
-					<div class="flex-row">
-						<div>
-							<input type="checkbox" ng-model="terms" ng-required="true">
-							<label>Tôi đã đọc và chấp nhận các điều khoản</label>
-						</div>
-					</div>
+                    <div id="error" style="color: red; margin-bottom: 10px; background-color: white">${error}</div>
 
-					<input name="admin" type="hidden" value="false">
-					<div class="d-flex justify-content-center mt-3">
-						<button type="submit"
-							class="button-submit align-items-center mx-auto"
-							style="width: 300px;">Đăng ký</button>
-					</div>
+                    <div class="flex-column">
+                        <button type="submit" class="btn button-submit">Đăng ký</button>
+                    </div>
 
-					<p class="p line">Hoặc tiếp tục với</p>
+                    <p class="p">
+                        Bạn đã có tài khoản?
+                        <a href="login" class="span">Đăng nhập</a>
+                    </p>
+                </form>
+            </div>
+        </div>
+    </div>
 
-					<div class="flex-row">
-						<button class="btn1 google"
-							style="background-color: #333232; border: 1px solid #1c1c1c; color: #eee;">
-							<svg version="1.1" width="20" id="Layer_1"
-								xmlns="http://www.w3.org/2000/svg"
-								xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
-								viewBox="0 0 512 512"
-								style="enable-background: new 0 0 512 512;" xml:space="preserve">
-                                <path style="fill:#FBBB00;"
-									d="M113.47,309.408L95.648,375.94l-65.139,1.378C11.042,341.211,0,299.9,0,256
-                c0-42.451,10.324-82.483,28.624-117.732h0.014l57.992,10.632l25.404,57.644c-5.317,15.501-8.215,32.141-8.215,49.456
-                C103.821,274.792,107.225,292.797,113.47,309.408z"></path>
-                                <path style="fill:#518EF8;"
-									d="M507.527,208.176C510.467,223.662,512,239.655,512,256c0,18.328-1.927,36.206-5.598,53.451
-                c-12.462,58.683-45.025,109.925-90.134,146.187l-0.014-0.014l-73.044-3.727l-10.338-64.535
-                c29.932-17.554,53.324-45.025,65.646-77.911h-136.89V208.176h138.887L507.527,208.176L507.527,208.176z">
-                                </path>
-                                <path style="fill:#28B446;"
-									d="M416.253,455.624l0.014,0.014C372.396,490.901,316.666,512,256,512
-                c-97.491,0-182.252-54.491-225.491-134.681l82.961-67.91c21.619,57.698,77.278,98.771,142.53,98.771
-                c28.047,0,54.323-7.582,76.87-20.818L416.253,455.624z"></path>
-                                <path style="fill:#F14336;"
-									d="M419.404,58.936l-82.933,67.896c-23.335-14.586-50.919-23.012-80.471-23.012
-                c-66.729,0-123.429,42.957-143.965,102.724l-83.397-68.276h-0.014C71.23,56.123,157.06,0,256,0
-                C318.115,0,375.068,22.126,419.404,58.936z"></path>
+    <script>
+        function validateForm() {
+            var fullName = document.getElementById("fullName").value;
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var confirmPassword = document.getElementById("confirmPassword").value;
+            var error = document.getElementById("error");
 
-                            </svg>
+            if (!fullName || !email || !password || !confirmPassword) {
+                error.textContent = "Vui lòng nhập đầy đủ thông tin.";
+                return false;
+            }
 
-							Google
+            if (password !== confirmPassword) {
+                error.textContent = "Mật khẩu không khớp.";
+                return false;
+            }
 
-						</button>
-						<button class="btn1 apple"
-							style="background-color: #333232; border: 1px solid #1c1c1c; color: #eee;">
-							<svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px"
-								width="35" height="35" viewBox="0 0 48 48">
-                                <linearGradient
-									id="Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1" x1="9.993"
-									x2="40.615" y1="9.993" y2="40.615"
-									gradientUnits="userSpaceOnUse">
-                                    <stop offset="0"
-									stop-color="#2aa4f4"></stop>
-                                    <stop offset="1"
-									stop-color="#007ad9"></stop>
-                                </linearGradient>
-                                <path
-									fill="url(#Ld6sqrtcxMyckEl6xeDdMa_uLWV5A9vXIPu_gr1)"
-									d="M24,4C12.954,4,4,12.954,4,24s8.954,20,20,20s20-8.954,20-20S35.046,4,24,4z">
-                                </path>
-                                <path fill="#fff"
-									d="M26.707,29.301h5.176l0.813-5.258h-5.989v-2.874c0-2.184,0.714-4.121,2.757-4.121h3.283V12.46 c-0.577-0.078-1.797-0.248-4.102-0.248c-4.814,0-7.636,2.542-7.636,8.334v3.498H16.06v5.258h4.948v14.452 C21.988,43.9,22.981,44,24,44c0.921,0,1.82-0.084,2.707-0.204V29.301z">
-                                </path>
-                            </svg>
+            return true;
+        }
+    </script>
 
-							Facebook
-
-						</button>
-					</div>
-				</form>
-			</div>
-		</div>
-	</div>
-
-
-
-
-
-	<script src="//cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/script.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz4fnFO9gybBogGzOgYOvIS6i5j3zK6eJ2BJrBExljrC/+c9C8+pG1K8E/" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.min.js" integrity="sha384-s2mBk8t9ARtbALjC2mF83tTrrGek4sqocNVLnkzvJTCFl+yk2K6xq9KfYPaXvkfR" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/gh/freeps2/a7rarpress@main/swiper-bundle.min.js"></script>
 </body>
-
-
 </html>
