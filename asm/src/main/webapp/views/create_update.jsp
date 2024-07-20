@@ -137,7 +137,8 @@
 						style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">Lượt
 						xem</th>
 					<th scope="col"
-						style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">Trạng thái</th>
+						style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">Trạng
+						thái</th>
 					<th scope="col"
 						style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">Chỉnh
 						sửa</th>
@@ -181,12 +182,20 @@
 			<nav aria-label="Page navigation example">
 				<ul class="pagination justify-content-end"
 					style="background-color: rgba(255, 255, 255, 0.1) !important">
-					<li class="page-item disabled"><a class="page-link" href="#"
-						tabindex="-1">Previous</a></li>
-					<li class="page-item"><a class="page-link" href="#">1</a></li>
-					<li class="page-item"><a class="page-link" href="#">2</a></li>
-					<li class="page-item"><a class="page-link" href="#">3</a></li>
-					<li class="page-item"><a class="page-link" href="#">Next</a></li>
+					<c:if test="${currentPage > 1}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage - 1}" tabindex="-1">Previous</a></li>
+					</c:if>
+					<c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="status">
+						<li
+							class="page-item ${status.index + 1 == currentPage ? 'active' : ''}">
+							<a class="page-link" href="?page=${status.index + 1}">${status.index + 1}</a>
+						</li>
+					</c:forEach>
+					<c:if test="${currentPage < totalPages}">
+						<li class="page-item"><a class="page-link"
+							href="?page=${currentPage + 1}">Next</a></li>
+					</c:if>
 				</ul>
 			</nav>
 		</div>

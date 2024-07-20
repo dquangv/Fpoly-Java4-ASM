@@ -81,21 +81,21 @@ public class VideoDAO {
 	}
 
 	public List<Video> findAll() {
-		em = JpaUtils.getEntityManager();
-		List<Video> list = null;
-		try {
-			String jpql = "select o from Video o";
-			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
-			list = query.getResultList();
-
-			return list;
-		} catch (Exception e) {
-			e.printStackTrace();
-			return null;
-		} finally {
-			em.close();
-		}
+	    em = JpaUtils.getEntityManager();
+	    List<Video> list = null;
+	    try {
+	        String jpql = "SELECT o FROM Video o ORDER BY o.id ASC";
+	        TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+	        list = query.getResultList();
+	        return list;
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	        return null;
+	    } finally {
+	        em.close();
+	    }
 	}
+
 
 	public List<Video> findAllActive() {
 		em = JpaUtils.getEntityManager();

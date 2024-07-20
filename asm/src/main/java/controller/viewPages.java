@@ -28,77 +28,88 @@ public class viewPages extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String url = req.getRequestURI();
-		String viewPath = "";
-		String method = req.getMethod();
-		System.out.println("URL " + url);
-		System.out.println("Method " + method);
+	    String url = req.getRequestURI();
+	    String viewPath = "";
+	    String method = req.getMethod();
+	    System.out.println("URL " + url);
+	    System.out.println("Method " + method);
 
-		if (url.contains("TrangChu")) {
-			viewPath = "/views/TrangChu.jsp";
-			List<Video> listViDeo = vidDao.findAll();
-			req.setAttribute("listViDeo", listViDeo);
-		} else if (url.contains("watched")) {
-			viewPath = "/views/watched.jsp";
-		} else if (url.contains("thongke")) {
-			viewPath = "/views/thongke.jsp";
-		} else if (url.contains("favorite_video")) {
-			viewPath = "/views/favorite_video.jsp";
-		} else if (url.contains("details")) {
-			String path = req.getPathInfo();
-			int videoId = Integer.parseInt(path.substring(1));
-			Video video = vidDao.findById(videoId);
+	    int page = 1;
+	    int pageSize = 5;
 
-			List<Video> allActiveVideos = vidDao.findAllActive();
-			List<Video> listViDeo = new ArrayList<>();
+	    try {
+	        page = Integer.parseInt(req.getParameter("page"));
+	    } catch (NumberFormatException e) {
+	        page = 1;
+	    }
 
-			for (Video v : allActiveVideos) {
-				if (v.getId() != videoId) {
-					listViDeo.add(v);
-				}
-			}
-			req.setAttribute("listViDeo", listViDeo);
-			req.setAttribute("video", video);
-			viewPath = "/views/details.jsp";
-		} else if (url.contains("delete_video")) {
+	    List<Video> allVideos = vidDao.findAll();
+	    int totalItems = allVideos.size();
+	    int start = (page - 1) * pageSize;
+	    int end = Math.min(start + pageSize, totalItems);
 
-			if ("POST".equalsIgnoreCase(method)) {
-				handleDelete(req, resp);
-			}
-			viewPath = "/views/create_update.jsp";
-			List<Video> listViDeo = vidDao.findAll();
-			req.setAttribute("listViDeo", listViDeo);
-		} else if (url.contains("create_update")) {
-			if ("POST".equalsIgnoreCase(method)) {
-				handleFileUpload(req, resp);
-			}
-			viewPath = "/views/create_update.jsp";
-			List<Video> listViDeo = vidDao.findAll();
-			req.setAttribute("listViDeo", listViDeo);
-		} else if (url.contains("update_video")) {
-			if ("GET".equalsIgnoreCase(method)) {
-				handleGetVideo(req, resp);
-				viewPath = "/views/update.jsp";
-			} else if ("POST".equalsIgnoreCase(method)) {
-				handleUpdate(req, resp);
-				viewPath = "/views/create_update.jsp";
-				List<Video> listViDeo = vidDao.findAll();
-				req.setAttribute("listViDeo", listViDeo);
-			}
+	    List<Video> paginatedVideos = allVideos.subList(start, end);
 
-		} else if (url.contains("thongtincanhan")) {
-			viewPath = "/views/thongtincanhan.jsp";
-		} else if (url.contains("dangnhap")) {
-			req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
-			return;
-		} else if (url.contains("dangky")) {
-			req.getRequestDispatcher("/views/dangky.jsp").forward(req, resp);
-			return;
-		}
+	    req.setAttribute("listViDeo", paginatedVideos);
+	    req.setAttribute("currentPage", page);
+	    req.setAttribute("totalPages", (int) Math.ceil((double) totalItems / pageSize));
 
-		req.setAttribute("view", viewPath);
-		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+	    if (url.contains("TrangChu")) {
+	        viewPath = "/views/TrangChu.jsp";
+	    } else if (url.contains("watched")) {
+	        viewPath = "/views/watched.jsp";
+	    } else if (url.contains("thongke")) {
+	        viewPath = "/views/thongke.jsp";
+	    } else if (url.contains("favorite_video")) {
+	        viewPath = "/views/favorite_video.jsp";
+	    } else if (url.contains("details")) {
+	        String path = req.getPathInfo();
+	        int videoId = Integer.parseInt(path.substring(1));
+	        Video video = vidDao.findById(videoId);
+
+	        List<Video> allActiveVideos = vidDao.findAllActive();
+	        List<Video> listViDeo = new ArrayList<>();
+
+	        for (Video v : allActiveVideos) {
+	            if (v.getId() != videoId) {
+	                listViDeo.add(v);
+	            }
+	        }
+	        req.setAttribute("listViDeo", listViDeo);
+	        req.setAttribute("video", video);
+	        viewPath = "/views/details.jsp";
+	    } else if (url.contains("delete_video")) {
+	        if ("POST".equalsIgnoreCase(method)) {
+	            handleDelete(req, resp);
+	        }
+	        viewPath = "/views/create_update.jsp";
+	    } else if (url.contains("create_update")) {
+	        if ("POST".equalsIgnoreCase(method)) {
+	            handleFileUpload(req, resp);
+	        }
+	        viewPath = "/views/create_update.jsp";
+	    } else if (url.contains("update_video")) {
+	        if ("GET".equalsIgnoreCase(method)) {
+	            handleGetVideo(req, resp);
+	            viewPath = "/views/update.jsp";
+	        } else if ("POST".equalsIgnoreCase(method)) {
+	            handleUpdate(req, resp);
+	            viewPath = "/views/create_update.jsp";
+	        }
+	    } else if (url.contains("thongtincanhan")) {
+	        viewPath = "/views/thongtincanhan.jsp";
+	    } else if (url.contains("dangnhap")) {
+	        req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+	        return;
+	    } else if (url.contains("dangky")) {
+	        req.getRequestDispatcher("/views/dangky.jsp").forward(req, resp);
+	        return;
+	    }
+
+	    req.setAttribute("view", viewPath);
+	    req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
+
 
 	private void handleFileUpload(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -132,7 +143,7 @@ public class viewPages extends HttpServlet {
 				video.setPoster(fileName);
 				video.setActive(activate);
 				video.setDescription(description);
-				
+
 				vidDao.create(video);
 				System.out.println("Video tao thanh cong");
 
