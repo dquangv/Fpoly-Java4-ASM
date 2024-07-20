@@ -52,7 +52,6 @@ public class UserDao {
 			TypedQuery<User> query = em.createQuery(jpql, User.class);
 			query.setParameter("email", email);
 			user = query.getSingleResult();
-			System.out.println("fullname of user " + user.getFullname());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println("không truy vấn được user");

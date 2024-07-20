@@ -3,11 +3,13 @@ package controller;
 import java.io.IOException;
 import java.util.List;
 
+import javax.mail.Session;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.bean.User;
 import com.bean.Video;
@@ -21,6 +23,8 @@ public class viewPages extends HttpServlet {
 	 UserDao userDao = new UserDao();
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	    HttpSession session = req.getSession();
+	    String email = (String) session.getAttribute("user");
 		String url = req.getRequestURI();
 		String viewPath = "";
 
@@ -47,7 +51,24 @@ public class viewPages extends HttpServlet {
 		} else if (url.contains("details")) {
 			viewPath = "/views/details.jsp";
 		} else if (url.contains("thongtincanhan")) {
-			viewPath = "/views/thongtincanhan.jsp";
+		    viewPath = "/views/thongtincanhan.jsp";
+		    
+		    if (email != null) {
+		        User user = userDao.getUserByEmail(email);
+		        req.setAttribute("usesimg", user.getImage());
+		        System.out.println(user.getImage());
+		        req.setAttribute("usesd", user.getFullname());
+		        req.setAttribute("usesa", user.getEmail());
+		        System.out.println(user.getFullname() + user.getEmail());
+		
+		        req.setAttribute("view", viewPath); 
+		        req.getRequestDispatcher("/index.jsp").forward(req, resp);
+		        return;
+		    } else {
+		        // forward tới trang đăng nhập nếu không có email trong session
+		        req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+		        return;
+		    }
 		} else if (url.contains("login")) {
 			req.getRequestDispatcher("views/dangnhap.jsp").forward(req, resp);
 			return;
@@ -58,5 +79,8 @@ public class viewPages extends HttpServlet {
 
 		req.setAttribute("view", viewPath);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
+	}
+	protected void getUser(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		
 	}
 }

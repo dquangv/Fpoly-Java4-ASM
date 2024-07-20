@@ -24,6 +24,8 @@ public class User {
 	private String fullname;
 	@Column(name = "Admin")
 	private boolean admin;
+	@Column(name = "image")
+	private String image;
 	@OneToMany(mappedBy = "user")
 	List<Watched> favorites;
 
@@ -57,6 +59,15 @@ public class User {
 
 	public void setFullname(String fullname) {
 		this.fullname = fullname;
+	}
+
+	
+	public String getImage() {
+		return image;
+	}
+
+	public void setImage(String image) {
+		this.image = image;
 	}
 
 	public boolean isAdmin() {
