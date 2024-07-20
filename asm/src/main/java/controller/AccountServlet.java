@@ -30,6 +30,7 @@ public class AccountServlet extends HttpServlet {
 				resp.setCharacterEncoding("UTF-8");
 				User entity = new User();
 				BeanUtils.populate(entity, req.getParameterMap());
+				entity.setImage("default_user_avatar.jpg");
 				UserDao dao = new UserDao();
 				User existedUser = dao.getUserByEmail(entity.getEmail());
 
