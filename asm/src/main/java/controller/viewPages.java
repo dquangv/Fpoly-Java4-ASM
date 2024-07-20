@@ -60,6 +60,8 @@ public class viewPages extends HttpServlet {
 
         HttpSession session = req.getSession();
         String email = (String) session.getAttribute("user");
+        User userAccount = userDao.getUserByRole(true);
+        req.setAttribute("user", userAccount);
 
         if (url.contains("TrangChu")) {
             viewPath = "/views/TrangChu.jsp";
@@ -68,8 +70,7 @@ public class viewPages extends HttpServlet {
             } else {
                 System.out.println("List is empty or null");
             }
-            User user = userDao.getUserByRole(true);
-            req.setAttribute("user", user);
+            
             req.setAttribute("listViDeo", listViDeo);
         } else if (url.contains("watched")) {
             viewPath = "/views/watched.jsp";
@@ -81,7 +82,8 @@ public class viewPages extends HttpServlet {
         	    
         	    viewPath = "/views/thongke.jsp";
         } else if (url.contains("favorite_video")) {
-            viewPath = "/views/favorite_video.jsp";
+            req.getRequestDispatcher("/favorite_video").forward(req, resp);
+            return;
         } else if (url.contains("details")) {
             String path = req.getPathInfo();
             int videoId = Integer.parseInt(path.substring(1));
@@ -95,6 +97,7 @@ public class viewPages extends HttpServlet {
                     listViDeo.add(v);
                 }
             }
+            
             req.setAttribute("listViDeo", listViDeo);
             req.setAttribute("video", video);
             viewPath = "/views/details.jsp";

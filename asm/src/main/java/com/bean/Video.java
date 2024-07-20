@@ -30,15 +30,15 @@ public class Video {
 	private boolean active;
 	@Column(name = "Link")
 	private String link;
-	
+	@OneToMany(mappedBy = "video")
+	List<Watched> watchedVideos;
+
 	@Override
 	public String toString() {
 		return "Video [id=" + id + ", title=" + title + ", poster=" + poster + ", views=" + views + ", description="
 				+ description + ", active=" + active + ", link=" + link;
 	}
 
-	@OneToMany(mappedBy = "video")
-	List<Watched> favorites;
 	public String getLink() {
 		return link;
 	}
@@ -46,8 +46,6 @@ public class Video {
 	public void setLink(String link) {
 		this.link = link;
 	}
-
-	
 
 	public int getId() {
 		return id;
@@ -81,12 +79,12 @@ public class Video {
 		this.views = views;
 	}
 
-	public List<Watched> getFavorites() {
-		return favorites;
+	public List<Watched> getWatchedVideos() {
+		return watchedVideos;
 	}
 
-	public void setFavorites(List<Watched> favorites) {
-		this.favorites = favorites;
+	public void setWatchedVideos(List<Watched> watchedVideos) {
+		this.watchedVideos = watchedVideos;
 	}
 
 	public String getDescription() {

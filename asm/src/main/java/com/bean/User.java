@@ -27,7 +27,15 @@ public class User {
 	@Column(name = "image")
 	private String image;
 	@OneToMany(mappedBy = "user")
-	List<Watched> favorites;
+	List<Watched> watchedVideos;
+
+	public List<Watched> getWatchedVideos() {
+		return watchedVideos;
+	}
+
+	public void setWatchedVideos(List<Watched> watchedVideos) {
+		this.watchedVideos = watchedVideos;
+	}
 
 	public int getId() {
 		return id;

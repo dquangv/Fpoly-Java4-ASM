@@ -15,16 +15,16 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 @Entity
-@Table(name = "Watched", uniqueConstraints = { @UniqueConstraint(columnNames = { "VideoId", "UserId" }) })
+@Table(name = "Watched", uniqueConstraints = { @UniqueConstraint(columnNames = { "videoId", "userId" }) })
 public class Watched {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	@ManyToOne
-	@JoinColumn(name = "UserId")
+	@JoinColumn(name = "userId")
 	private User user;
 	@ManyToOne
-	@JoinColumn(name = "VideoId")
+	@JoinColumn(name = "videoId")
 	private Video video;
 	@Temporal(TemporalType.DATE)
 	private Date watchDate = new Date();
