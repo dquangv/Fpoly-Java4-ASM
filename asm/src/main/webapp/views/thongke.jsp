@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <style>
 body {
 	background-color: #181818;
@@ -73,6 +73,7 @@ table tbody tr:hover {
 	background-color: #383838;
 }
 </style>
+
 <main class="col-12 col-lg-11 text-white">
 	<div class="container-fluid">
 		<div class="row">
@@ -81,8 +82,7 @@ table tbody tr:hover {
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
 					<li class="nav-item"><a class="nav-link active" id="likes-tab"
 						data-bs-toggle="tab" href="#likes" role="tab"
-						aria-controls="likes" aria-selected="true">Thống kê lượt thích</a>
-					</li>
+						aria-controls="likes" aria-selected="true">Thống kê lượt xem</a></li>
 					<li class="nav-item"><a class="nav-link" id="user-likes-tab"
 						data-bs-toggle="tab" href="#user-likes" role="tab"
 						aria-controls="user-likes" aria-selected="false">Danh sách
@@ -102,32 +102,25 @@ table tbody tr:hover {
 							<thead>
 								<tr>
 									<th>Video</th>
-									<th>Lượt thích</th>
+									<th>Lượt xem</th>
 								</tr>
 							</thead>
 							<tbody>
-								<tr>
-									<td>Video 1</td>
-									<td>1500</td>
-								</tr>
-								<tr>
-									<td>Video 2</td>
-									<td>2300</td>
-								</tr>
-								<tr>
-									<td>Video 3</td>
-									<td>1200</td>
-								</tr>
+								<c:forEach var="video" items="${videoStatistics}">
+									<tr>
+										<td><c:out value="${video.title}" /></td>
+										<td><c:out value="${video.views}" /></td>
+									</tr>
+								</c:forEach>
 							</tbody>
 						</table>
 					</div>
+					<!-- Placeholder for user likes and user shares tab content -->
 					<div class="tab-pane fade" id="user-likes" role="tabpanel"
 						aria-labelledby="user-likes-tab">
 						<select class="form-select" aria-label="Default select example">
 							<option selected>Lọc theo video</option>
-							<option value="1">Video1</option>
-							<option value="2">Video2</option>
-							<option value="3">Video3</option>
+							<!-- Options for video filter -->
 						</select>
 						<table class="table table-striped table-dark mt-4">
 							<thead>
@@ -139,6 +132,7 @@ table tbody tr:hover {
 								</tr>
 							</thead>
 							<tbody>
+								<!-- Sample data for user likes -->
 								<tr>
 									<td>user1</td>
 									<td>fullname1</td>
@@ -164,9 +158,7 @@ table tbody tr:hover {
 						aria-labelledby="user-shared-tab">
 						<select class="form-select" aria-label="Default select example">
 							<option selected>Lọc theo video</option>
-							<option value="1">Video1</option>
-							<option value="2">Video2</option>
-							<option value="3">Video3</option>
+							<!-- Options for video filter -->
 						</select>
 						<table class="table table-striped table-dark mt-4">
 							<thead>
@@ -178,6 +170,7 @@ table tbody tr:hover {
 								</tr>
 							</thead>
 							<tbody>
+								<!-- Sample data for user shares -->
 								<tr>
 									<td>name1</td>
 									<td>email1</td>
@@ -207,29 +200,40 @@ table tbody tr:hover {
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 	<script>
-		const ctx = document.getElementById('likesChart').getContext('2d');
-		const likesChart = new Chart(ctx, {
-			type : 'bar',
-			data : {
-				labels : [ 'Video 1', 'Video 2', 'Video 3' ],
-				datasets : [ {
-					label : 'Lượt thích',
-					data : [ 1500, 2300, 1200 ],
-					backgroundColor : [ 'rgba(255, 99, 132, 0.2)',
-							'rgba(54, 162, 235, 0.2)',
-							'rgba(255, 206, 86, 0.2)' ],
-					borderColor : [ 'rgba(255, 99, 132, 1)',
-							'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)' ],
-					borderWidth : 1
-				} ]
-			},
-			options : {
-				scales : {
-					y : {
-						beginAtZero : true
-					}
-				}
-			}
-		});
-	</script>
+        const ctx = document.getElementById('likesChart').getContext('2d');
+        const likesChart = new Chart(ctx, {
+            type: 'bar',
+            data: {
+                labels: [<c:forEach var="video" items="${videoStatistics}" varStatus="status">
+                            <c:if test="${status.index > 0}">, </c:if>
+                            '<c:out value="${video.title}"/>'
+                        </c:forEach>],
+                datasets: [{
+                    label: 'Lượt xem',
+                    data: [<c:forEach var="video" items="${videoStatistics}" varStatus="status">
+                            <c:if test="${status.index > 0}">, </c:if>
+                            '<c:out value="${video.views}"/>'
+                        </c:forEach>],
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)',
+                        'rgba(54, 162, 235, 0.2)',
+                        'rgba(255, 206, 86, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255, 99, 132, 1)',
+                        'rgba(54, 162, 235, 1)',
+                        'rgba(255, 206, 86, 1)'
+                    ],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                }
+            }
+        });
+    </script>
 </main>

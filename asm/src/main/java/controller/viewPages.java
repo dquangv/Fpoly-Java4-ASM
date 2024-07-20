@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
@@ -73,7 +74,12 @@ public class viewPages extends HttpServlet {
         } else if (url.contains("watched")) {
             viewPath = "/views/watched.jsp";
         } else if (url.contains("thongke")) {
-            viewPath = "/views/thongke.jsp";
+        	  RequestDispatcher dispatcher = req.getRequestDispatcher("/VideoStatistics");
+        	    dispatcher.include(req, resp);
+        	    List<Video> videoStatistics = (List<Video>) req.getAttribute("videoStatistics");
+        	    req.setAttribute("videoStatistics", videoStatistics);
+        	    
+        	    viewPath = "/views/thongke.jsp";
         } else if (url.contains("favorite_video")) {
             viewPath = "/views/favorite_video.jsp";
         } else if (url.contains("details")) {

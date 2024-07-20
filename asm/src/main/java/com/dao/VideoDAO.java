@@ -1,7 +1,10 @@
 package com.dao;
 
+import java.util.ArrayList;
 import java.util.List;
 import javax.persistence.EntityManager;
+import javax.persistence.EntityTransaction;
+import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.bean.Video;
@@ -13,6 +16,10 @@ public class VideoDAO {
 	public static void main(String[] args) {
 		VideoDAO vidDao = new VideoDAO();
 		vidDao.findAll();
+		List<Video> vd = vidDao.getVideoStatistics();
+		for (Video video : vd) {
+			System.out.println(video.getTitle() +" "+video.getViews());
+		}
 	}
 
 	@Override
@@ -81,21 +88,20 @@ public class VideoDAO {
 	}
 
 	public List<Video> findAll() {
-	    em = JpaUtils.getEntityManager();
-	    List<Video> list = null;
-	    try {
-	        String jpql = "SELECT o FROM Video o ORDER BY o.id ASC";
-	        TypedQuery<Video> query = em.createQuery(jpql, Video.class);
-	        list = query.getResultList();
-	        return list;
-	    } catch (Exception e) {
-	        e.printStackTrace();
-	        return null;
-	    } finally {
-	        em.close();
-	    }
+		em = JpaUtils.getEntityManager();
+		List<Video> list = null;
+		try {
+			String jpql = "SELECT o FROM Video o ORDER BY o.id ASC";
+			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+			list = query.getResultList();
+			return list;
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		} finally {
+			em.close();
+		}
 	}
-
 
 	public List<Video> findAllActive() {
 		em = JpaUtils.getEntityManager();
@@ -121,4 +127,41 @@ public class VideoDAO {
 			em.close();
 		}
 	}
+
+	public List<Video> getVideoStatistics() {
+		List<Video> videos = new ArrayList<>();
+		EntityManager em = JpaUtils.getEntityManager(); // Khởi tạo EntityManager mới
+		EntityTransaction transaction = null;
+		try {
+			transaction = em.getTransaction();
+			transaction.begin();
+
+			// Execute the native SQL function
+			Query query = em.createNativeQuery("SELECT * FROM get_video_statistics()");
+
+			// Process the result set
+			List<Object[]> results = query.getResultList();
+			for (Object[] result : results) {
+				Video video = new Video();
+				video.setTitle((String) result[0]);
+
+				// Check if result[1] is null before calling longValue()
+				Long views = result[1] != null ? ((Number) result[1]).longValue() : 0L;
+				video.setViews(views);
+
+				videos.add(video);
+			}
+
+			transaction.commit();
+		} catch (Exception e) {
+			if (transaction != null) {
+				transaction.rollback();
+			}
+			e.printStackTrace();
+		} finally {
+			em.close(); // Đảm bảo EntityManager được đóng
+		}
+		return videos;
+	}
+
 }
