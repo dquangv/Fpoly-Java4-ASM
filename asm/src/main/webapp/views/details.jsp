@@ -259,7 +259,7 @@
 
 				<div class="container">
 					<c:forEach var="item" items="${listViDeo}">
-						<a href="details/${item.id}"
+						<a href="${item.id}"
 							class="text-decoration-none">
 							<div class="row mb-2" style="height: 96px">
 								<div class="col-5 h-100">
