@@ -26,7 +26,7 @@ import com.dao.UserDao;
 		"/views/create_update", "/views/update_video", "/views/delete_video", "/views/dangky", "/views/dangnhap",
 		"/views/thongtincanhan" })
 @MultipartConfig
-public class viewPages extends HttpServlet {
+public class MainPageServlet extends HttpServlet {
 	VideoDAO vidDao = new VideoDAO();
 	UserDao userDao = new UserDao();
 
