@@ -32,6 +32,7 @@ public class LoginServlet extends HttpServlet {
 				}
 				HttpSession session = request.getSession();
 				session.setAttribute("user", googleUser.getEmail());
+				session.setAttribute("userImg", googleUser.getImage());
 				response.sendRedirect(request.getContextPath() + "/views/TrangChu");
 				return;
 			} catch (Exception e) {
@@ -55,6 +56,7 @@ public class LoginServlet extends HttpServlet {
 		if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user.getEmail());
+			session.setAttribute("userImg", user.getImage());
 			request.setAttribute("success", "Đăng nhập thành công!");
 			response.sendRedirect(request.getContextPath() + "/views/TrangChu");
 		} else {
