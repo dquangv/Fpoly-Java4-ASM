@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -22,13 +23,15 @@ public class FavoriteVideoServlet extends HttpServlet {
 		resp.setCharacterEncoding("UTF-8");
 
 		Video entity = new Video();
+		HttpSession session = req.getSession();
+		String email = (String) session.getAttribute("user");
 
 		try {
 			BeanUtils.populate(entity, req.getParameterMap());
 
 			WatchedDAO dao = new WatchedDAO();
 
-			List<Video> list = dao.getFavVideoList();
+			List<Video> list = dao.getFavVideoList(email);
 
 			if (list == null) {
 				req.setAttribute("error", "Hiện tại bạn chưa thích video nào.");

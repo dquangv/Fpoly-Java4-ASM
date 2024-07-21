@@ -82,8 +82,14 @@ public class MainPageServlet extends HttpServlet {
 
 			viewPath = "/views/thongke.jsp";
 		} else if (url.contains("favorite_video")) {
-			req.getRequestDispatcher("/favorite_video").forward(req, resp);
-			return;
+			if (email != null) {
+				req.getRequestDispatcher("/favorite_video").forward(req, resp);
+				return;
+			} else {
+				// forward tới trang đăng nhập nếu không có email trong session
+				req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+				return;
+			}
 		} else if (url.contains("details")) {
 			String path = req.getPathInfo();
 			int videoId = Integer.parseInt(path.substring(1));

@@ -14,14 +14,16 @@ import com.utils.JpaUtils;
 public class WatchedDAO {
 	private static EntityManager em;
 	
-	public List<Video> getFavVideoList() {
+	public List<Video> getFavVideoList(String email) {
 		em = JpaUtils.getEntityManager();
 		List<Video> list = new ArrayList<>();
+		
 		try {
 			em.getTransaction().begin();
 			
-			String jpql = "select video from Video video inner join Watched watched on video.id = watched.video.id where watched.isLiked = true";
+			String jpql = "select video from Video video inner join Watched watched on video.id = watched.video.id join User user on user.id = watched.user.id where watched.isLiked = true and user.email =: email";
 			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+			query.setParameter("email", email);
 			
 			list = query.getResultList();
 			

@@ -10,12 +10,12 @@
 		<div class="col-4">
 			<div class="container">
 				<div class="card rounded-3 bg-black text-white">
-					<img src="${pageContext.request.contextPath}/img/22.jpg" class="card-img-top" alt="...">
+					<img src="${pageContext.request.contextPath}/img/${listFavVideo[0].getPoster()}" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title mb-3">Video đã thích</h5>
-						<p class="card-text mb-1">Username</p>
+						<p class="card-text mb-1">${user.fullname}</p>
 						<p class="card-text text-secondary">
-							${totalItems} videos <span class="ms-3">500N luợt xem</span>
+							${totalItems} videos
 						</p>
 						<a href="#" class="btn btn-primary bg-white text-black rounded-5">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
