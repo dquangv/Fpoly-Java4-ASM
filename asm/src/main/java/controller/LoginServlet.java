@@ -10,31 +10,56 @@ import javax.servlet.http.HttpSession;
 
 import com.bean.User;
 import com.dao.UserDao;
+import com.utils.GoogleUtils;
 
 @WebServlet("/views/login")
 public class LoginServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
-    }
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String code = request.getParameter("code");
+		if (code != null && !code.isEmpty()) {
+			try {
+				String accessToken = GoogleUtils.getToken(code);
+				User googleUser = GoogleUtils.getUserInfo(accessToken);
 
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        UserDao userDao = new UserDao();
-        User user = userDao.getUserByEmail(email);
+				UserDao userDao = new UserDao();
+				User existingUser = userDao.getUserByEmail(googleUser.getEmail());
 
-        if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", email);
-            request.setAttribute("success", "Đăng nhập thành công!");
-            response.sendRedirect(request.getContextPath() + "/views/TrangChu");
-        } else {
-            request.setAttribute("error", "Email hoặc mật khẩu chưa đúng!");
-            request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
-        }
-    }
+				if (existingUser == null) {
+					userDao.create(googleUser);
+				}
+				HttpSession session = request.getSession();
+				session.setAttribute("user", googleUser.getEmail());
+				response.sendRedirect(request.getContextPath() + "/views/TrangChu");
+				return;
+			} catch (Exception e) {
+				e.printStackTrace();
+				request.setAttribute("error", "Lỗi khi đăng nhập bằng Google!");
+				request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
+				return;
+			}
+		}
+
+		request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
+	}
+
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String email = request.getParameter("email");
+		String password = request.getParameter("password");
+		UserDao userDao = new UserDao();
+		User user = userDao.getUserByEmail(email);
+
+		if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
+			HttpSession session = request.getSession();
+			session.setAttribute("user", user.getEmail());
+			request.setAttribute("success", "Đăng nhập thành công!");
+			response.sendRedirect(request.getContextPath() + "/views/TrangChu");
+		} else {
+			request.setAttribute("error", "Email hoặc mật khẩu chưa đúng!");
+			request.getRequestDispatcher("/views/dangnhap.jsp").forward(request, response);
+		}
+	}
 }

@@ -22,7 +22,7 @@ label {
 							<div class="account-settings">
 								<div class="user-profile">
 									<div class="user-avatar mb-4">
-										<img class="img-fluid" style="" src="../img/${usesimg}" alt="">
+										<img class="img-fluid" style="" src="${usesimg}" alt="">
 									</div>
 									<h5 class="user-name text-center " style="color: #ffffff;">${usesd}</h5>
 								</div>
