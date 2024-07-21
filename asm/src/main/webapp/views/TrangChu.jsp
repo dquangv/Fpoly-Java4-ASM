@@ -51,14 +51,14 @@
 	<div class="row my-4">
 		<c:forEach var="item" items="${listViDeo}">
 			<div class="col-lg-3 col-sm-6 col-12 mb-2">
-				<a href="/fpoly/views/details/${item.id}"
+				<a href="details/${item.id}"
 					class="text-decoration-none">
 					<div
 						style="border: 0 !important; background-color: transparent !important; color: #fff;"
 						class="card p-0">
 						<div class="w-100"
 							style="border-radius: 4px; overflow: hidden !important; height: 150px !important">
-							<img src="${pageContext.request.contextPath}/img/${item.poster}"
+							<img src="${item.poster}"
 								class="rounded w-100 object-fit-cover"
 								title="YouTube video" style="height: 200px" allowfullscreen>
 						</div>

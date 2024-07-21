@@ -10,7 +10,7 @@
 		<div class="col-4">
 			<div class="container">
 				<div class="card rounded-3 bg-black text-white">
-					<img src="${pageContext.request.contextPath}/img/${listFavVideo[0].getPoster()}" class="card-img-top" alt="...">
+					<img src="${listFavVideo[0].getPoster()}" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title mb-3">Video đã thích</h5>
 						<p class="card-text mb-1">${user.fullname}</p>
@@ -49,7 +49,7 @@
 								<p>${status.index+1}</p>
 							</div>
 							<div class="col-md-3">
-								<img src="${pageContext.request.contextPath}/img/${item.poster}" class="img-fluid rounded-start"
+								<img src="${item.poster}" class="img-fluid rounded-start"
 									alt="...">
 							</div>
 							<div class="col-md-8">

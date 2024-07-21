@@ -265,7 +265,7 @@
 								<div class="col-5 h-100">
 
 									<div class="video-container">
-										<img src="${pageContext.request.contextPath}/img/${item.poster}"
+										<img src="${item.poster}"
 											class="border rounded w-100 object-fit-cover"
 											title="YouTube video" style="height: 96px" allowfullscreen>
 									</div>
