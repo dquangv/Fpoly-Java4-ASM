@@ -6,7 +6,7 @@
          <c:url var = "views" value = "/views"/>
          <a href = "${views}/TrangChu">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-house"></i> <br />
@@ -15,7 +15,7 @@
          </a>
          <a href = "${views}/thongtincanhan">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />
@@ -25,7 +25,7 @@
          </a>
           <a href="${views}/watched">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />
@@ -35,7 +35,7 @@
           </a>
          <a href = "${views}/favorite_video">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />
@@ -45,7 +45,7 @@
          </a>
         <a href="${views}/create_update">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />
@@ -55,7 +55,7 @@
         </a>
          <a href="${views}/thongke">
           <button
-            style="height: 80px; font-size: 13px"
+            style="height: 70px; font-size: 12px"
             class="btn w-100 aside-button"
           >
             <i class="bi bi-youtube"></i> <br />

@@ -22,52 +22,62 @@
 			<div class="carousel-item active ml-4">
 				<div
 					class="overflow-auto d-flex gap-2 align-items-center mx-lg-4 px-lg-4">
-					<button class="btn">Tất cả</button>
-					<button class="btn">Âm nhạc</button>
-					<button class="btn">Thể thao</button>
-					<button class="btn">Đời sống</button>
-					<button class="btn">Học tập</button>
-					<button class="btn">Trò chơi</button>
-					<button class="btn">Danh sách kết hợp</button>
-					<button class="btn">Trực tiếp</button>
-					<button class="btn">Đề xuất mới</button>
-					<button class="btn">Thịnh hành</button>
-					<button class="btn">Phiêu lưu</button>
+					<button class="btn" style="font-size: 14px">Tất cả</button>
+					<button class="btn" style="font-size: 14px">Âm nhạc</button>
+					<button class="btn" style="font-size: 14px">Thể thao</button>
+					<button class="btn" style="font-size: 14px">Đời sống</button>
+					<button class="btn" style="font-size: 14px">Học tập</button>
+					<button class="btn" style="font-size: 14px">Trò chơi</button>
+					<button class="btn" style="font-size: 14px">Danh sách kết
+						hợp</button>
+					<button class="btn" style="font-size: 14px">Trực tiếp</button>
+					<button class="btn" style="font-size: 14px">Đề xuất mới</button>
+					<button class="btn" style="font-size: 14px">Thịnh hành</button>
 				</div>
 			</div>
 		</div>
 		<button class="carousel-control-prev d-none d-lg-block" type="button"
-			data-bs-target="#carouselExample" data-bs-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span> <span
+			data-bs-target="#carouselExample" data-bs-slide="prev"
+			style="width: 33px;height=33px;">
+			<span class="carousel-control-prev-icon" aria-hidden="true"
+				style="width: 1rem; height: 1rem;"></span> <span
 				class="visually-hidden">Previous</span>
 		</button>
 		<button class="carousel-control-next d-none d-lg-block" type="button"
-			data-bs-target="#carouselExample" data-bs-slide="next">
+			data-bs-target="#carouselExample" data-bs-slide="next"
+			style="width: 33px;height=33px;">
 			<span class="carousel-control-next-icon text-white"
-				style="color: white !important" aria-hidden="true"></span> <span
-				class="visually-hidden">Next</span>
+				style="color: white !important; width: 1rem; height: 1rem;"
+				aria-hidden="true"></span> <span class="visually-hidden">Next</span>
 		</button>
 	</div>
 	<div class="row my-4">
 		<c:forEach var="item" items="${listViDeo}">
-			<div class="col-lg-3 col-sm-6 col-12 mb-2">
-				<a href="details/${item.id}"
-					class="text-decoration-none">
+			<div class="col-lg-4 col-sm-6 col-12 mb-2">
+				<a href="details/${item.id}" class="text-decoration-none">
 					<div
 						style="border: 0 !important; background-color: transparent !important; color: #fff;"
 						class="card p-0">
 						<div class="w-100"
-							style="border-radius: 4px; overflow: hidden !important; height: 150px !important">
-							<img src="${item.poster}"
-								class="rounded w-100 object-fit-cover"
+							style="border-radius: 4px; overflow: hidden !important; height: 200px !important">
+							<img src="${item.poster}" class="rounded w-100 object-fit-cover"
 								title="YouTube video" style="height: 200px" allowfullscreen>
 						</div>
-						<div class="card-body p-0"
-							style="background: transparent !important">
-							<div class="text-truncate">${item.title}</div>
-							<h5 class="text-truncate text-secondary" style="font-size: 12px">${user.fullname}</h5>
-							<h5 class="text-truncate text-secondary" style="font-size: 12px">${item.views}
-								lượt xem</h5>
+						<div class="row">
+							<div class="col-lg-2" style="padding-top:15px">
+								<img alt="" src="../img/tung.jpg"
+									style="width: 36px; height: 36px; border-radius: 50%">
+							</div>
+							<div class="col-lg-10" style="padding-left:0">
+								<div class="card-body p-0"
+									style="background: transparent !important">
+									<div class="text-truncate fw-semibold my-2">${item.title}</div>
+									<h5 class="text-truncate text-secondary mb-1"
+										style="font-size: 14px">${user.fullname}</h5>
+									<h5 class="text-truncate text-secondary mb-1"
+										style="font-size: 14px">${item.views} lượtxem</h5>
+								</div>
+							</div>
 						</div>
 					</div>
 				</a>
