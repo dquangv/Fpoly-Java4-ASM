@@ -29,7 +29,7 @@
 				<div class="mb-3 col-xl-2">
 					<label for="videoImage" class="form-label">Hình ảnh video</label>
 					<div class="image-wrapper">
-						<img id="videoImage" src="../img/${video.poster}"
+						<img id="videoImage" src="${video.poster}"
 							alt="Hình ảnh video" class="img-fluid mb-2"
 							style="height: 150px; width: 150px; object-fit: cover"> <input
 							name="photo" type="file" id="videoImageInput" class="d-none">

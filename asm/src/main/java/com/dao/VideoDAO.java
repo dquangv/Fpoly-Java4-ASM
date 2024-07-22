@@ -18,7 +18,7 @@ public class VideoDAO {
 		vidDao.findAll();
 		List<Video> vd = vidDao.getVideoStatistics();
 		for (Video video : vd) {
-			System.out.println(video.getTitle() +" "+video.getViews());
+			System.out.println(video.getTitle()+video.getViews());
 		}
 	}
 
@@ -130,25 +130,19 @@ public class VideoDAO {
 
 	public List<Video> getVideoStatistics() {
 		List<Video> videos = new ArrayList<>();
-		EntityManager em = JpaUtils.getEntityManager(); // Khởi tạo EntityManager mới
+		EntityManager em = JpaUtils.getEntityManager();
 		EntityTransaction transaction = null;
 		try {
 			transaction = em.getTransaction();
 			transaction.begin();
 
-			// Execute the native SQL function
 			Query query = em.createNativeQuery("SELECT * FROM get_video_statistics()");
-
-			// Process the result set
 			List<Object[]> results = query.getResultList();
 			for (Object[] result : results) {
 				Video video = new Video();
 				video.setTitle((String) result[0]);
-
-				// Check if result[1] is null before calling longValue()
 				Long views = result[1] != null ? ((Number) result[1]).longValue() : 0L;
 				video.setViews(views);
-
 				videos.add(video);
 			}
 
@@ -159,7 +153,7 @@ public class VideoDAO {
 			}
 			e.printStackTrace();
 		} finally {
-			em.close(); // Đảm bảo EntityManager được đóng
+			em.close();
 		}
 		return videos;
 	}
