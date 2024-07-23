@@ -43,7 +43,9 @@
 						class="rounded-pill d-flex justify-content-between align-items-center px-3 gap-2"
 						style="background-color: #272727">
 						<div style="cursor: pointer">
-							<i class="bi bi-hand-thumbs-up"></i> <span class="fw-bold">3.1K</span>
+							<a
+								href="${pageContext.request.contextPath}/like_detail/${video.id}"><i
+								class="bi bi-hand-thumbs-up"></i></a> <span class="fw-bold">3.1K</span>
 						</div>
 						<div class="flex-1">|</div>
 						<div style="cursor: pointer">
@@ -71,7 +73,7 @@
 					class="d-flex justify-content-between align-items-center px-3 gap-2"
 					style="background-color: #272727">
 					<div class="d-flex gap-2">
-						<div class="fw-semibold">${video.views}lượtxem 3 tháng trước</div>
+						<div class="fw-semibold">${video.views}lượtxem3 tháng trước</div>
 						<div class="fw-semibold" style="font-size: 16px; color: #a7a7a7">Danh
 							sách phát Speedup buồn tâm trạng</div>
 					</div>
@@ -259,8 +261,7 @@
 
 				<div class="container">
 					<c:forEach var="item" items="${listViDeo}">
-						<a href="${item.id}"
-							class="text-decoration-none">
+						<a href="${item.id}" class="text-decoration-none">
 							<div class="row mb-2" style="height: 96px">
 								<div class="col-5 h-100">
 

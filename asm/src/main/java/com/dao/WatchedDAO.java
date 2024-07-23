@@ -37,6 +37,25 @@ public class WatchedDAO {
 		}
 	}
 	
+	public Watched create(Watched entity) {
+		em = JpaUtils.getEntityManager();
+		
+		try {
+			em.getTransaction().begin();
+			em.persist(entity);
+			em.getTransaction().commit();
+			
+			return entity;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+			
+			return null;
+		} finally {
+			em.close();
+		}
+	}
+	
 	public boolean update(Watched entity) {
 		em = JpaUtils.getEntityManager();
 		
@@ -75,31 +94,32 @@ public class WatchedDAO {
 	}
 	
 	
-	public void dislikeVideoByVideoId(String email, int videoId) {
-        em = JpaUtils.getEntityManager();
-
-        try {
-            em.getTransaction().begin();
-
-            String jpql = "UPDATE Watched w SET w.isLiked = false WHERE w.user.email = :email AND w.video.id = :videoId";
-            Query query = em.createQuery(jpql);
-            query.setParameter("email", email);
-            query.setParameter("videoId", videoId);
-
-            int rowsUpdated = query.executeUpdate();
-            em.getTransaction().commit();
-
-            if (rowsUpdated == 0) {
-                System.out.println("Không tìm thấy ID trong Watched");
-            }
-            
-        } catch (Exception e) {
-            em.getTransaction().rollback();
-            e.printStackTrace();
-        } finally {
-            em.close();
-        }
-    }
+//	public void dislikeVideoByVideoId(String email, int videoId) {
+//        em = JpaUtils.getEntityManager();
+//
+//        try {
+//            em.getTransaction().begin();
+//
+//            String jpql = "UPDATE Watched w SET w.isLiked = false WHERE w.user.email = :email AND w.video.id = :videoId";
+//            Query query = em.createQuery(jpql);
+//            query.setParameter("email", email);
+//            query.setParameter("videoId", videoId);
+//
+//            int rowsUpdated = query.executeUpdate();
+//            em.getTransaction().commit();
+//
+//            if (rowsUpdated == 0) {
+//                System.out.println("Không tìm thấy ID trong Watched");
+//            }
+//            
+//        } catch (Exception e) {
+//            em.getTransaction().rollback();
+//            e.printStackTrace();
+//        } finally {
+//            em.close();
+//        }
+//    }
+	
 	
 	public void deleteByVideoId(int videoId) {
 		em = JpaUtils.getEntityManager();

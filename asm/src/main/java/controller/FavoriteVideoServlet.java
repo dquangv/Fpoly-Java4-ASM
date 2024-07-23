@@ -73,8 +73,6 @@ public class FavoriteVideoServlet extends HttpServlet {
 //			int videoId = Integer.parseInt(req.getParameter("videoId"));
 					Watched watched = dao.findWatchedByVideoId(email, videoId);
 
-					System.out.println("123aaaa123" + watched.getId() + " - " + watched.getVideo() + " - "
-							+ watched.getUser() + " - " + watched.isLiked());
 					if (watched != null) {
 						watched.setLiked(false);
 						if (dao.update(watched)) {
@@ -85,7 +83,7 @@ public class FavoriteVideoServlet extends HttpServlet {
 					}
 				}
 			} catch (Exception e) {
-
+				e.printStackTrace();
 			}
 		}
 
