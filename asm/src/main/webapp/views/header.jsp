@@ -33,7 +33,7 @@ if (userImage == null || userImage.isEmpty()) {
 							<svg xmlns="http://www.w3.org/2000/svg"
 								id="yt-logo-updated-svg_yt4" class="external-icon"
 								viewBox="0 0 90 20" focusable="false"
-								style="pointer-events: none; display: inherit; width: 150px; height: auto;"
+								style="pointer-events: none; display: inherit; width: 100px; height: auto;"
 								aria-hidden="true">
   <svg id="yt-logo-updated_yt4" viewBox="0 0 90 20"
 									preserveAspectRatio="xMidYMid meet"
