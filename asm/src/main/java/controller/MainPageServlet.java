@@ -17,7 +17,9 @@ import javax.servlet.http.Part;
 import javax.servlet.http.HttpSession;
 
 import com.bean.Video;
+import com.bean.Watched;
 import com.dao.VideoDAO;
+import com.dao.WatchedDAO;
 import com.bean.User;
 
 import com.dao.UserDao;
@@ -91,10 +93,35 @@ public class MainPageServlet extends HttpServlet {
 				return;
 			}
 		} else if (url.contains("details")) {
+			req.setCharacterEncoding("UTF-8");
+			resp.setCharacterEncoding("UTF-8");
+
+			String emailDetail = (String) session.getAttribute("user");
+			UserDao userDAO = new UserDao();
+			User user = userDAO.getUserByEmail(email);
+			String uri = req.getRequestURI();
 			String path = req.getPathInfo();
 			int videoId = Integer.parseInt(path.substring(1));
 			Video video = vidDao.findById(videoId);
+			WatchedDAO dao = new WatchedDAO();
+			Watched watched = null;
+			try {
+				watched = dao.findWatchedByVideoId(email, videoId);
+			} catch (Exception ex) {
+				
+			}
+			if (watched == null) {
+				Watched newWatched = new Watched();
+				newWatched.setUser(user);
+				newWatched.setVideo(video);
+				watched = dao.create(newWatched);
+			}
 
+		
+
+			System.out.println("Watched " + watched);
+
+			req.setAttribute("watched", watched);
 			List<Video> allActiveVideos = vidDao.findAllActive();
 			List<Video> listViDeo = new ArrayList<>();
 

@@ -87,7 +87,7 @@ public class WatchedDAO {
 			
 			vidWatched = query.getSingleResult();
 		} catch (Exception e) {
-			e.printStackTrace();
+			return null;
 		}
 		
 		return vidWatched;

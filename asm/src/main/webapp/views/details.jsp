@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <style>
 .truncate {
@@ -30,8 +31,8 @@
 							style="height: 40px" />
 						<div class="d-flex flex-column justify-content-center"
 							style="max-height: 43px">
-							<h6 style="font-size: 15px">Minme</h6>
-							<div style="font-size: 13px" class="lead">Minme</div>
+							<h6 style="font-size: 15px">Võ Thanh Tùng</h6>
+							<div style="font-size: 13px" class="lead">3.2K đăng ký</div>
 						</div>
 
 					</div>
@@ -43,9 +44,19 @@
 						class="rounded-pill d-flex justify-content-between align-items-center px-3 gap-2"
 						style="background-color: #272727">
 						<div style="cursor: pointer">
-							<a
-								href="${pageContext.request.contextPath}/like_detail/${video.id}"><i
-								class="bi bi-hand-thumbs-up"></i></a> <span class="fw-bold">3.1K</span>
+							<c:choose>
+								<c:when test="${watched != null && watched.liked}">
+									<span class="fw-bold"><i
+										class="bi bi-hand-thumbs-up-fill"></i> 3.1K</span>
+								</c:when>
+								<c:otherwise>
+									<a
+										href="${pageContext.request.contextPath}/like_detail/${video.id}" style="text-decoration: none">
+										<i class="bi bi-hand-thumbs-up"></i>
+									</a>
+									3.1K
+								</c:otherwise>
+							</c:choose>
 						</div>
 						<div class="flex-1">|</div>
 						<div style="cursor: pointer">
@@ -73,9 +84,8 @@
 					class="d-flex justify-content-between align-items-center px-3 gap-2"
 					style="background-color: #272727">
 					<div class="d-flex gap-2">
-						<div class="fw-semibold">${video.views}lượtxem3 tháng trước</div>
-						<div class="fw-semibold" style="font-size: 16px; color: #a7a7a7">Danh
-							sách phát Speedup buồn tâm trạng</div>
+						<div class="fw-semibold">${video.formattedViews}lượtxem</div>
+						<div class="fw-semibold" style="font-size: 16px; color: #a7a7a7">${video.title}</div>
 					</div>
 				</div>
 				<div class="fw-semibold px-3">${video.description}</div>
@@ -273,18 +283,16 @@
 
 								</div>
 								<div
-									class="col-7 d-flex flex-column text-white justify-content-center gap-2 h-100 row py-4">
+									class="col-7 d-flex flex-column text-white justify-content-center gap-2 h-100 row">
 									<div class="col-11 d-flex flex-column justify-content-center">
-										<div class="d-flex flex-column justify-content-between"
-											style="height: 50%">
-											<h6 class="truncate">${item.title}</h6>
-											<div class="lead" style="font-size: 15px">Minmess</div>
-										</div>
-										<div class="d-flex gap-2">
-											<div class="lead" style="font-size: 12px">${item.views}
-												lượt xem</div>
-											<div style="font-size: 12px">3 ngày trước</div>
-										</div>
+
+										<h6 class="">${item.shortTitleWithEllipsis}</h6>
+										<div class="lead" style="font-size: 15px">Nguyễn Thanh
+											Tùng</div>
+										<div class="lead" style="font-size: 12px">${item.formattedViews}
+											lượt xem</div>
+
+
 									</div>
 									<div
 										class="col-1 d-flex justify-content-center align-items-center">

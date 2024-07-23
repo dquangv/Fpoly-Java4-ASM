@@ -58,8 +58,8 @@
                             <div class="col-lg-10" style="padding-left:0">
                                 <div class="card-body p-0" style="background: transparent !important">
                                     <div class="text-truncate fw-semibold my-2">${item.title}</div>
-                                    <h5 class="text-truncate text-secondary mb-1" style="font-size: 14px">${user.fullname}</h5>
-                                    <h5 class="text-truncate text-secondary mb-1" style="font-size: 14px">${item.views} lượt xem</h5>
+                                    <h5 class="text-truncate text-secondary mb-1" style="font-size: 14px">Nguyễn Thanh Tùng</h5>
+                                    <h5 class="text-truncate text-secondary mb-1" style="font-size: 14px">${item.formattedViews} lượt xem</h5>
                                 </div>
                             </div>
                         </div>

@@ -33,6 +33,12 @@ public class Watched {
 	@Temporal(TemporalType.DATE)
 	private Date LikeDate = new Date();
 
+	@Override
+	public String toString() {
+		return "Watched [id=" + id + ", user=" + user + ", video=" + video + ", watchDate=" + watchDate + ", isLiked="
+				+ isLiked + ", LikeDate=" + LikeDate + "]";
+	}
+
 	public int getId() {
 		return id;
 	}
