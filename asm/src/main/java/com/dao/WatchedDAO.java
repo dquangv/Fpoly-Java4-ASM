@@ -9,6 +9,7 @@ import javax.persistence.TypedQuery;
 import javax.transaction.Transaction;
 
 import com.bean.Video;
+import com.bean.Watched;
 import com.utils.JpaUtils;
 
 public class WatchedDAO {
@@ -35,7 +36,71 @@ public class WatchedDAO {
 			em.close();
 		}
 	}
+	
+	public boolean update(Watched entity) {
+		em = JpaUtils.getEntityManager();
+		
+		try {
+			em.getTransaction().begin();
+			em.merge(entity);
+			em.getTransaction().commit();
+			
+			return true;
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+			
+			return false;
+		} finally {
+			em.close();
+		}
+	}
+	
+	public Watched findWatchedByVideoId(String email, int videoId) {
+		em = JpaUtils.getEntityManager();
+		Watched vidWatched = null;
+		
+		try {
+			String hql = "SELECT w FROM Watched w WHERE w.user.email = :email AND w.video.id = :videoId";
+			TypedQuery<Watched> query = em.createQuery(hql, Watched.class);
+			query.setParameter("email", email);
+			query.setParameter("videoId", videoId);
+			
+			vidWatched = query.getSingleResult();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		return vidWatched;
+	}
+	
+	
+	public void dislikeVideoByVideoId(String email, int videoId) {
+        em = JpaUtils.getEntityManager();
 
+        try {
+            em.getTransaction().begin();
+
+            String jpql = "UPDATE Watched w SET w.isLiked = false WHERE w.user.email = :email AND w.video.id = :videoId";
+            Query query = em.createQuery(jpql);
+            query.setParameter("email", email);
+            query.setParameter("videoId", videoId);
+
+            int rowsUpdated = query.executeUpdate();
+            em.getTransaction().commit();
+
+            if (rowsUpdated == 0) {
+                System.out.println("Không tìm thấy ID trong Watched");
+            }
+            
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+            e.printStackTrace();
+        } finally {
+            em.close();
+        }
+    }
+	
 	public void deleteByVideoId(int videoId) {
 		em = JpaUtils.getEntityManager();
 		try {

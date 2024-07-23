@@ -9,14 +9,14 @@
 	<div class="row">
 		<div class="col-4">
 			<div class="container">
+
 				<div class="card rounded-3 bg-black text-white">
-					<img src="${listFavVideo[0].getPoster()}" class="card-img-top" alt="...">
+					<img src="${listFavVideo[0].getPoster()}" class="card-img-top"
+						alt="...">
 					<div class="card-body">
 						<h5 class="card-title mb-3">Video đã thích</h5>
 						<p class="card-text mb-1">${user.fullname}</p>
-						<p class="card-text text-secondary">
-							${totalItems} videos
-						</p>
+						<p class="card-text text-secondary">${totalItems}videos</p>
 						<a href="#" class="btn btn-primary bg-white text-black rounded-5">
 							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 								fill="currentColor" class="bi bi-caret-right"
@@ -35,6 +35,7 @@
 						</a>
 					</div>
 				</div>
+
 			</div>
 		</div>
 		<div class="col-8 list-video">
@@ -44,29 +45,31 @@
 			<c:forEach var="item" items="${listFavVideo}" varStatus="status">
 				<div class="card my-3 bg-black text-white">
 					<div class="row g-0">
-						
-							<div class="col-md-1 d-flex align-items-center">
-								<p>${status.index+1}</p>
-							</div>
-							<div class="col-md-3">
-								<img src="${item.poster}" class="img-fluid rounded-start"
-									alt="...">
-							</div>
-							<div class="col-md-8">
-								<div class="card-body">
-									<p class="card-text fs-5">${item.title}</p>
+
+						<div class="col-md-1 d-flex align-items-center">
+							<p>${status.index+1}</p>
+						</div>
+						<div class="col-md-3">
+							<a href="details/${item.id}" class="text-decoration-none"> <img
+								src="${item.poster}" class="img-fluid rounded-start" alt="...">
+							</a>
+						</div>
+						<div class="col-md-8">
+							<div class="card-body">
+								
+									<p class="card-text fs-5"><a href="details/${item.id}" class="text-decoration-none">${item.title}</a></p>
 									<p class="card-text bg-black d-flex justify-content-between">
 										<small class="text-secondary">${user.fullname} <span>
-												. ${item.views} lượt xem</span></small>
-										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
-											fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+												. ${item.views} lượt xem</span></small> <a href="${pageContext.request.contextPath}/dislike_video/${item.id}"> <svg
+												xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+												fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
 										<path
-												d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
-									</svg>
+													d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8z" />
+									</svg></a>
 									</p>
-								</div>
+								
 							</div>
-						
+						</div>
 					</div>
 				</div>
 			</c:forEach>
