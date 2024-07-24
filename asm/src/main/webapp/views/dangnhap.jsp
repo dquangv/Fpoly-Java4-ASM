@@ -303,6 +303,9 @@ to {
 				<c:if test="${not empty error}">
 					<div class="alert alert-danger">${error}</div>
 				</c:if>
+				<c:if test="${not empty message}">
+					<div class="alert alert-success">${message}</div>
+				</c:if>
 			</div>
 			<div class="row">
 				<form class="form" action="login" method="post">
@@ -353,7 +356,7 @@ to {
 						<div>
 							<input type="checkbox"> <label>Ghi nhớ đăng nhập</label>
 						</div>
-						<a style="text-decoration: none;" href=""><span class="span"
+						<a style="text-decoration: none;" href="forgotPassword"><span class="span"
 							style="color: #ffffff;">Quên mật khẩu?</span></a>
 					</div>
 					<div class="d-flex justify-content-center mt-3">

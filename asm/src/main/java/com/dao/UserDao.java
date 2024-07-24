@@ -58,24 +58,48 @@ public class UserDao {
 		}
 		return user;
 	}
-	
+
 	public User create(User entity) {
 		em = JpaUtils.getEntityManager();
-		
+
 		try {
 			em.getTransaction().begin();
-			
+
 			em.persist(entity);
 			em.getTransaction().commit();
-			
+
 			return entity;
 		} catch (Exception e) {
 			em.getTransaction().rollback();
 			e.printStackTrace();
-			
+
 			return null;
 		} finally {
 			em.close();
 		}
+	}
+
+	public boolean updatePassword(int userId, String newPassword) {
+		em = JpaUtils.getEntityManager();
+		boolean success = false;
+
+		try {
+			em.getTransaction().begin();
+			User user = em.find(User.class, userId);
+			if (user != null) {
+				user.setPassword(newPassword);
+				em.getTransaction().commit();
+				success = true;
+			} else {
+				em.getTransaction().rollback();
+				System.out.println("Người dùng không tồn tại.");
+			}
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return success;
 	}
 }
