@@ -56,6 +56,7 @@ public class LogInServlet extends HttpServlet {
 		if (user != null && user.getEmail().equals(email) && user.getPassword().equals(password)) {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user.getEmail());
+			session.setAttribute("userId", user.getId());
 			session.setAttribute("userImg", user.getImage());
 			request.setAttribute("success", "Đăng nhập thành công!");
 			response.sendRedirect(request.getContextPath() + "/views/TrangChu");
