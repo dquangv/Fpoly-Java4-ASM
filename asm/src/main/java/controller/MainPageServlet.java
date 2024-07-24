@@ -108,7 +108,7 @@ public class MainPageServlet extends HttpServlet {
 			try {
 				watched = dao.findWatchedByVideoId(email, videoId);
 			} catch (Exception ex) {
-				
+
 			}
 			if (watched == null) {
 				Watched newWatched = new Watched();
@@ -116,8 +116,6 @@ public class MainPageServlet extends HttpServlet {
 				newWatched.setVideo(video);
 				watched = dao.create(newWatched);
 			}
-
-		
 
 			System.out.println("Watched " + watched);
 

@@ -15,8 +15,8 @@ import com.bean.Watched;
 import com.dao.UserDao;
 import com.dao.WatchedDAO;
 
-@WebServlet({ "/like_detail/*", "/dislike_detail/*" })
-public class FavoriteDetail extends HttpServlet {
+@WebServlet({ "/like_detail/*", "/dislike_video_detail/*" })
+public class FavoriteDetailServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -35,21 +35,32 @@ public class FavoriteDetail extends HttpServlet {
 		try {
 
 			Watched watched = dao.findWatchedByVideoId(email, videoId);
-			if (uri.contains("like_detail")) {
-
-				if (watched != null) {
+			if (watched != null) {
+				
+				if (uri.contains("like_detail")) {
 					watched.setLiked(true);
+					
 					watched.setLikeDate(new Date());
-					if (dao.update(watched)) {
-						System.out.println("success");
-					} else {
-						System.out.println("failure");
-					}
+					dao.update(watched);
+					System.out.println("aaaaaaaaaaaa");
+					
+				} else if (uri.contains("dislike_video_detail")) {
+					watched.setLiked(false);
+					
+					dao.update(watched);
+					System.out.println("bbbbbbbbbbbb");
 				}
+				
+				
+//				System.out.println(watched);
+				
 			}
+			
+			
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+		
 
 //		req.setAttribute("view", "/views/details.jsp");
 		req.getRequestDispatcher("/views/details/" + String.valueOf(videoId)).forward(req, resp);

@@ -24,7 +24,7 @@ if (userImage == null || userImage.isEmpty()) {
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="TrangChu"> <yt-icon id="logo-icon"
+					aria-current="page" href="${pageContext.request.contextPath}/views/TrangChu"> <yt-icon id="logo-icon"
 							class="style-scope ytd-logo"><!--css-build:shady--><!--css-build:shady-->
 						<yt-icon-shape class="style-scope yt-icon">
 						<icon-shape class="yt-spec-icon-shape">
@@ -96,7 +96,7 @@ if (userImage == null || userImage.isEmpty()) {
 					<i class="bi bi-bell"></i>
 				</button>
 				<div>
-					<a href="thongtincanhan"> <img
+					<a href="${pageContext.request.contextPath}/views/thongtincanhan"> <img
 						style="width: 30px; height: 30px" class="rounded-circle border"
 						src="<%=userImage%>" alt="" />
 					</a>

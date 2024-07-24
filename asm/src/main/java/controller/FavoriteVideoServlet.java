@@ -100,7 +100,10 @@ public class FavoriteVideoServlet extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-
+		
+		User userAdmin = userDAO.getUserByRole(true);
+		
+		req.setAttribute("userAdmin", userAdmin);
 		req.setAttribute("user", user);
 		req.setAttribute("view", "/views/favorite_video.jsp");
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);

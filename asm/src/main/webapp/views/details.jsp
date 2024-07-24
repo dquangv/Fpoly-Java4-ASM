@@ -46,8 +46,9 @@
 						<div style="cursor: pointer">
 							<c:choose>
 								<c:when test="${watched != null && watched.liked}">
-									<span class="fw-bold"><i
-										class="bi bi-hand-thumbs-up-fill"></i> 3.1K</span>
+									<span class="fw-bold"><a
+										href="${pageContext.request.contextPath}/dislike_video_detail/${video.id}" style="text-decoration: none"><i
+										class="bi bi-hand-thumbs-up-fill"></i></a> 3.1K</span>
 								</c:when>
 								<c:otherwise>
 									<a
@@ -271,7 +272,7 @@
 
 				<div class="container">
 					<c:forEach var="item" items="${listViDeo}">
-						<a href="${item.id}" class="text-decoration-none">
+						<a href="${pageContext.request.contextPath}/views/details/${item.id}" class="text-decoration-none">
 							<div class="row mb-2" style="height: 96px">
 								<div class="col-5 h-100">
 
