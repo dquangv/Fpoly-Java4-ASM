@@ -37,24 +37,26 @@ public class ResetPasswordServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		String newPassword = req.getParameter("password");
-		String confirmPassword = req.getParameter("confirmPassword");
-		int userId = Integer.parseInt(req.getParameter("id"));
+	    String newPassword = req.getParameter("password");
+	    String confirmPassword = req.getParameter("confirmPassword");
+	    int userId = Integer.parseInt(req.getParameter("id"));
+	    String userEmail = req.getParameter("email");
 
-		if (newPassword != null && confirmPassword != null && newPassword.equals(confirmPassword)) {
-			boolean success = userDao.updatePassword(userId, newPassword);
+	    if (newPassword != null && confirmPassword != null && newPassword.equals(confirmPassword)) {
+	        boolean success = userDao.updatePassword(userId, newPassword);
 
-			if (success) {
-				req.setAttribute("message", "Mật khẩu của bạn đã được khôi phục thành công.");
-				req.getRequestDispatcher("/views/resetPasswordForm.jsp").forward(req, resp);
-			} else {
-				req.setAttribute("error", "Có lỗi xảy ra khi khôi phục mật khẩu.");
-				req.getRequestDispatcher("/views/resetPasswordForm.jsp").forward(req, resp);
-			}
-		} else {
-			req.setAttribute("error", "Mật khẩu và xác nhận mật khẩu không khớp.");
-			req.getRequestDispatcher("/views/resetPasswordForm.jsp").forward(req, resp);
-		}
+	        if (success) {
+	            req.setAttribute("message", "Mật khẩu của bạn đã được khôi phục thành công.");
+	            req.getRequestDispatcher("/views/resetPasswordForm.jsp").forward(req, resp);
+	        } else {
+	            req.setAttribute("error", "Có lỗi xảy ra khi khôi phục mật khẩu.");
+	            req.getRequestDispatcher("/views/resetPasswordForm.jsp").forward(req, resp);
+	        }
+	    } else {
+	        req.setAttribute("error", "Mật khẩu và xác nhận mật khẩu không khớp.");
+	        req.getRequestDispatcher("/views/resetPasswordForm.jsp?id=" + userId + "&email=" + userEmail).forward(req, resp);
+	    }
 	}
+
 
 }

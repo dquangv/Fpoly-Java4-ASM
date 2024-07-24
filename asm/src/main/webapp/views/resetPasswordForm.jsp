@@ -313,8 +313,8 @@ to {
 				</c:if>
 			</div>
 			<form class="form" action="resetPassword" method="post">
-				<input type="hidden" name="id" value="${user.id}"> <input
-					type="hidden" name="email" value="${user.email}">
+				<input type="hidden" name="id" value="${param.id}"> <input
+					type="hidden" name="email" value="${param.email}">
 				<div class="mb-3">
 					<div class="flex-column">
 						<label>Mật khẩu </label>
