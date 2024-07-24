@@ -94,7 +94,7 @@ public class WatchedDAO {
 	}
 	
 	
-//	public void dislikeVideoByVideoId(String email, int videoId) {
+//	public void unlikeVideoByVideoId(String email, int videoId) {
 //        em = JpaUtils.getEntityManager();
 //
 //        try {

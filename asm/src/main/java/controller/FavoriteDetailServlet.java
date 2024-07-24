@@ -15,7 +15,7 @@ import com.bean.Watched;
 import com.dao.UserDao;
 import com.dao.WatchedDAO;
 
-@WebServlet({ "/like_detail/*", "/dislike_video_detail/*" })
+@WebServlet({ "/like_detail/*", "/unlike_video_detail/*" })
 public class FavoriteDetailServlet extends HttpServlet {
 
 	@Override
@@ -42,13 +42,11 @@ public class FavoriteDetailServlet extends HttpServlet {
 					
 					watched.setLikeDate(new Date());
 					dao.update(watched);
-					System.out.println("aaaaaaaaaaaa");
 					
-				} else if (uri.contains("dislike_video_detail")) {
+				} else if (uri.contains("unlike_video_detail")) {
 					watched.setLiked(false);
 					
 					dao.update(watched);
-					System.out.println("bbbbbbbbbbbb");
 				}
 				
 				

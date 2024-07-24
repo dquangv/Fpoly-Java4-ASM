@@ -65,7 +65,7 @@
 								<p class="card-text bg-black d-flex justify-content-between">
 									<small class="text-secondary">${userAdmin.fullname} <span>
 											. ${item.formattedViews} lượt xem</span></small> <a
-										href="${pageContext.request.contextPath}/dislike_video/${item.id}">
+										href="${pageContext.request.contextPath}/unlike_video/${item.id}">
 										<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
 											fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
 										<path

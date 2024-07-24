@@ -18,7 +18,7 @@ import com.bean.Watched;
 import com.dao.UserDao;
 import com.dao.WatchedDAO;
 
-@WebServlet({ "/favorite_video", "/dislike_video/*" })
+@WebServlet({ "/favorite_video", "/unlike_video/*" })
 public class FavoriteVideoServlet extends HttpServlet {
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -49,7 +49,7 @@ public class FavoriteVideoServlet extends HttpServlet {
 //			}
 //
 //		} else 
-		if (uri.contains("dislike_video")) {
+		if (uri.contains("unlike_video")) {
 //			String[] parts = uri.split("/");
 //
 //			try {

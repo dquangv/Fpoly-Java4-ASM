@@ -47,7 +47,7 @@
 							<c:choose>
 								<c:when test="${watched != null && watched.liked}">
 									<span class="fw-bold"><a
-										href="${pageContext.request.contextPath}/dislike_video_detail/${video.id}" style="text-decoration: none"><i
+										href="${pageContext.request.contextPath}/unlike_video_detail/${video.id}" style="text-decoration: none"><i
 										class="bi bi-hand-thumbs-up-fill"></i></a> 3.1K</span>
 								</c:when>
 								<c:otherwise>
