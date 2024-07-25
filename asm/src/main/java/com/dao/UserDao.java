@@ -102,4 +102,28 @@ public class UserDao {
 		}
 		return success;
 	}
+
+	public boolean updateInfo(int userId, String email, String fullname) {
+		em = JpaUtils.getEntityManager();
+		boolean success = false;
+
+		try {
+			em.getTransaction().begin();
+			User user = em.find(User.class, userId);
+			if (user != null) {
+				user.setEmail(email);
+				em.getTransaction().commit();
+				success = true;
+			} else {
+				em.getTransaction().rollback();
+				System.out.println("Người dùng không tồn tại.");
+			}
+		} catch (Exception e) {
+			em.getTransaction().rollback();
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return success;
+	}
 }

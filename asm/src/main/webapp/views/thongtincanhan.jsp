@@ -59,12 +59,15 @@ label {
 							<div class="row gutters mt-2">
 								<div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-2">
 									<div class="text-right">
-										<form action="updateProfile" method="post" style="display: inline;">
+										<form action="updateProfile" method="post"
+											style="display: inline;">
 											<button type="submit" class="btn me-1"
-												style="background-color: #e51b1b !important; color: white;">Cập nhật</button>
+												style="background-color: #e51b1b !important; color: white;">Cập
+												nhật</button>
 										</form>
 										<form action="logout" method="post" style="display: inline;">
-											<button type="submit" class="btn btn-secondary">Đăng xuất</button>
+											<button type="submit" class="btn btn-secondary">Đăng
+												xuất</button>
 										</form>
 									</div>
 								</div>
@@ -95,8 +98,7 @@ label {
 										<label for="confirmNewPassword" class="ms-2">Xác nhận
 											mật khẩu mới</label> <input type="password" class="form-control"
 											style="color: black; background-color: white;"
-											id="confirmNewPassword"
-											ng-model="passwordData.confirmNewPassword">
+											id="confirmNewPassword">
 									</div>
 								</div>
 							</div>
