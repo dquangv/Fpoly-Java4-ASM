@@ -26,7 +26,8 @@ public class Watched {
 	@ManyToOne
 	@JoinColumn(name = "videoId")
 	private Video video;
-	@Temporal(TemporalType.DATE)
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "watchDate")
 	private Date watchDate = new Date();
 	@Column(name = "isLiked")
 	private boolean isLiked;
@@ -86,7 +87,5 @@ public class Watched {
 	public void setLikeDate(Date likeDate) {
 		LikeDate = likeDate;
 	}
-
-	
 
 }

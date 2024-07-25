@@ -75,6 +75,14 @@ public class MainPageServlet extends HttpServlet {
 
 			req.setAttribute("listViDeo", listViDeo);
 		} else if (url.contains("watched")) {
+			// Chuyển tiếp yêu cầu đến /watched_video
+			RequestDispatcher dispatcher = req.getRequestDispatcher("/watched_video");
+			dispatcher.include(req, resp);
+
+			// Lấy danh sách video đã xem từ request
+			List<Video> watchedVideo = (List<Video>) req.getAttribute("listVideo");
+			req.setAttribute("watched_video", watchedVideo);
+
 			viewPath = "/views/watched.jsp";
 		} else if (url.contains("thongke")) {
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/VideoStatistics");
@@ -102,9 +110,11 @@ public class MainPageServlet extends HttpServlet {
 			String uri = req.getRequestURI();
 			String path = req.getPathInfo();
 			int videoId = Integer.parseInt(path.substring(1));
+			Integer userId = (Integer) session.getAttribute("userId");
 			Video video = vidDao.findById(videoId);
 			WatchedDAO dao = new WatchedDAO();
 			Watched watched = null;
+			 dao.updateOrInsertWatched(userId, videoId);
 			try {
 				watched = dao.findWatchedByVideoId(email, videoId);
 			} catch (Exception ex) {
