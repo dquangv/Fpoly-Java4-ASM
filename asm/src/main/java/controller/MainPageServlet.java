@@ -105,7 +105,7 @@ public class MainPageServlet extends HttpServlet {
 
 			String emailDetail = (String) session.getAttribute("user");
 			if (emailDetail == null) {
-				req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+				 resp.sendRedirect(req.getContextPath() + "/views/dangnhap.jsp");
 				return;
 			}
 
@@ -123,7 +123,7 @@ public class MainPageServlet extends HttpServlet {
 			try {
 				watched = dao.findWatchedByVideoId(emailDetail, videoId);
 			} catch (Exception ex) {
-				ex.printStackTrace(); // In lỗi ra console để dễ dàng debug
+				ex.printStackTrace();
 			}
 			if (watched == null) {
 				Watched newWatched = new Watched();
