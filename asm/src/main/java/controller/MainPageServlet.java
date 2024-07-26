@@ -96,7 +96,6 @@ public class MainPageServlet extends HttpServlet {
 				req.getRequestDispatcher("/favorite_video").forward(req, resp);
 				return;
 			} else {
-				// forward tới trang đăng nhập nếu không có email trong session
 				req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
 				return;
 			}
@@ -105,8 +104,13 @@ public class MainPageServlet extends HttpServlet {
 			resp.setCharacterEncoding("UTF-8");
 
 			String emailDetail = (String) session.getAttribute("user");
+			if (emailDetail == null) {
+				req.getRequestDispatcher("/views/dangnhap.jsp").forward(req, resp);
+				return;
+			}
+
 			UserDao userDAO = new UserDao();
-			User user = userDAO.getUserByEmail(email);
+			User user = userDAO.getUserByEmail(emailDetail);
 			String uri = req.getRequestURI();
 			String path = req.getPathInfo();
 			int videoId = Integer.parseInt(path.substring(1));
@@ -114,11 +118,12 @@ public class MainPageServlet extends HttpServlet {
 			Video video = vidDao.findById(videoId);
 			WatchedDAO dao = new WatchedDAO();
 			Watched watched = null;
-			 dao.updateOrInsertWatched(userId, videoId);
-			try {
-				watched = dao.findWatchedByVideoId(email, videoId);
-			} catch (Exception ex) {
 
+			dao.updateOrInsertWatched(userId, videoId);
+			try {
+				watched = dao.findWatchedByVideoId(emailDetail, videoId);
+			} catch (Exception ex) {
+				ex.printStackTrace(); // In lỗi ra console để dễ dàng debug
 			}
 			if (watched == null) {
 				Watched newWatched = new Watched();

@@ -33,6 +33,7 @@ public class LogInServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", googleUser.getEmail());
 				session.setAttribute("userImg", googleUser.getImage());
+				session.setAttribute("userID", existingUser.getId());
 				response.sendRedirect(request.getContextPath() + "/views/TrangChu");
 				return;
 			} catch (Exception e) {
