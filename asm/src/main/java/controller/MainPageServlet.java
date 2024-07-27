@@ -107,7 +107,7 @@ public class MainPageServlet extends HttpServlet {
 
 			String emailDetail = (String) session.getAttribute("user");
 			if (emailDetail == null) {
-				 resp.sendRedirect(req.getContextPath() + "/views/dangnhap.jsp");
+				resp.sendRedirect(req.getContextPath() + "/views/dangnhap.jsp");
 				return;
 			}
 
@@ -154,25 +154,45 @@ public class MainPageServlet extends HttpServlet {
 				handleDelete(req, resp);
 			}
 			viewPath = "/views/create_update.jsp";
+			List<Video> videos = vidDao.findAll();
+
+			List<Video> paginatedVideo = videos.subList(start, end);
+
+			req.setAttribute("listViDeo", paginatedVideo);
+			req.setAttribute("currentPage", page);
+			req.setAttribute("totalPages", (int) Math.ceil((double) totalItems / pageSize));
 		} else if (url.contains("create_update")) {
 			if ("POST".equalsIgnoreCase(method)) {
 				handleFileUpload(req, resp);
 			}
+			List<Video> videos = vidDao.findAll();
+
+			List<Video> paginatedVideo = videos.subList(start, end);
+
+			req.setAttribute("listViDeo", paginatedVideo);
+			req.setAttribute("currentPage", page);
+			req.setAttribute("totalPages", (int) Math.ceil((double) totalItems / pageSize));
 			viewPath = "/views/create_update.jsp";
 		} else if (url.contains("update_video")) {
 			String pageParam = req.getParameter("page");
-			System.out.println("paramsssssssss " + pageParam);
-			System.out.println("GET".equalsIgnoreCase(method) && pageParam == null);
-		
+
 			if ("GET".equalsIgnoreCase(method) && pageParam == null) {
 				handleGetVideo(req, resp);
 				viewPath = "/views/update.jsp";
 			} else if ("POST".equalsIgnoreCase(method)) {
 				handleUpdate(req, resp);
 				viewPath = "/views/create_update.jsp";
-			}else {
+			} else {
 				viewPath = "/views/create_update.jsp";
 			}
+			List<Video> videos = vidDao.findAll();
+
+			List<Video> paginatedVideo = videos.subList(start, end);
+
+			req.setAttribute("listViDeo", paginatedVideo);
+			req.setAttribute("currentPage", page);
+			req.setAttribute("totalPages", (int) Math.ceil((double) totalItems / pageSize));
+
 		} else if (url.contains("thongtincanhan")) {
 			viewPath = "/views/thongtincanhan.jsp";
 
@@ -323,6 +343,7 @@ public class MainPageServlet extends HttpServlet {
 				} else {
 					request.setAttribute("alertMessage", "Cập nhật thất bại");
 				}
+
 			}
 		} catch (Exception ex) {
 			System.out.println("Error: " + ex.getMessage());
