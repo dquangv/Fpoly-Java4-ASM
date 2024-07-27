@@ -18,7 +18,7 @@ public class VideoDAO {
 		vidDao.findAll();
 		List<Video> vd = vidDao.getVideoStatistics();
 		for (Video video : vd) {
-			System.out.println(video.getTitle()+video.getViews());
+			System.out.println(video.getTitle() + video.getViews());
 		}
 	}
 
@@ -158,4 +158,21 @@ public class VideoDAO {
 		return videos;
 	}
 
+	public List<Video> searchVideo(String keyword) {
+		EntityManager em = JpaUtils.getEntityManager();
+		EntityTransaction transaction = null;
+		List<Video> list = new ArrayList<Video>();
+		try {
+			String jpql = "SELECT DISTINCT v FROM Video v WHERE LOWER(v.title) LIKE :keyword OR LOWER(v.poster) LIKE :keyword OR LOWER(v.description) LIKE :keyword OR LOWER(v.link) LIKE :keyword";
+			TypedQuery<Video> query = em.createQuery(jpql, Video.class);
+			query.setParameter("keyword", "%" + keyword.toLowerCase() + "%");
+			list = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+
+		return list;
+	}
 }

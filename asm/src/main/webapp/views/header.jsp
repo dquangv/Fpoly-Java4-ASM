@@ -24,10 +24,11 @@ if (userImage == null || userImage.isEmpty()) {
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="${pageContext.request.contextPath}/views/TrangChu"> <yt-icon id="logo-icon"
-							class="style-scope ytd-logo"><!--css-build:shady--><!--css-build:shady-->
-						<yt-icon-shape class="style-scope yt-icon">
-						<icon-shape class="yt-spec-icon-shape">
+					aria-current="page"
+					href="${pageContext.request.contextPath}/views/TrangChu"> <yt-icon
+							id="logo-icon" class="style-scope ytd-logo"><!--css-build:shady--><!--css-build:shady-->
+						<yt-icon-shape class="style-scope yt-icon"> <icon-shape
+							class="yt-spec-icon-shape">
 						<div
 							style="width: 100%; height: 100%; display: block; fill: currentcolor;">
 							<svg xmlns="http://www.w3.org/2000/svg"
@@ -73,15 +74,20 @@ if (userImage == null || userImage.isEmpty()) {
 				<div
 					class="input-group mb-3 rounded-pill mx-auto overflow-hidden border h-100 outline-none"
 					style="border: 1px solid #272727 !important; margin: auto 0 !important; outline: none; border: none; outline: none;">
-
-					<input type="text" class="form-control" placeholder="Tìm kiếm"
-						aria-label="Username" aria-describedby="basic-addon1"
-						style="background-color: transparent; color: #fff; outline: none; border: none !important;" />
-					<span class="input-group-text"
-						style="background: #272727; color: white; outline: none; border: none !important;"
-						id="basic-addon1"><i class="bi-search"></i></span>
+					<form action="${pageContext.request.contextPath}/views/search"
+						method="GET" class="d-flex" role="search" style="width:100%">
+						<input type="text" name="search" class="form-control"
+							placeholder="Tìm kiếm" aria-label="Username"
+							aria-describedby="basic-addon1"
+							style="background-color: transparent; color: #fff; outline: none; border: none !important;" />
+						<button type="submit" class="btn btn-light">
+							<span class="input-group-text"
+								style="background: #272727; color: white; outline: none; border: none !important;"
+								id="basic-addon1"><i class="bi-search"></i></span>
+						</button>
+					</form>
 				</div>
-				<button class="btn btn-primary rounded-circle overflow-hidden">
+				<button class="btn btn-primary rounded-circle overflow-hidden" style="width:50px">
 					<i class="bi bi-mic"></i>
 				</button>
 			</div>
@@ -96,9 +102,9 @@ if (userImage == null || userImage.isEmpty()) {
 					<i class="bi bi-bell"></i>
 				</button>
 				<div>
-					<a href="${pageContext.request.contextPath}/views/thongtincanhan"> <img
-						style="width: 30px; height: 30px" class="rounded-circle border"
-						src="<%=userImage%>" alt="" />
+					<a href="${pageContext.request.contextPath}/views/thongtincanhan">
+						<img style="width: 30px; height: 30px"
+						class="rounded-circle border" src="<%=userImage%>" alt="" />
 					</a>
 				</div>
 			</div>
