@@ -34,6 +34,8 @@ public class MainPageServlet extends HttpServlet {
 
 	@Override
 	protected void service(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		req.setCharacterEncoding("UTF-8");
+		resp.setCharacterEncoding("UTF-8");
 		String url = req.getRequestURI();
 		String viewPath = "";
 		String method = req.getMethod();
@@ -158,11 +160,17 @@ public class MainPageServlet extends HttpServlet {
 			}
 			viewPath = "/views/create_update.jsp";
 		} else if (url.contains("update_video")) {
-			if ("GET".equalsIgnoreCase(method)) {
+			String pageParam = req.getParameter("page");
+			System.out.println("paramsssssssss " + pageParam);
+			System.out.println("GET".equalsIgnoreCase(method) && pageParam == null);
+		
+			if ("GET".equalsIgnoreCase(method) && pageParam == null) {
 				handleGetVideo(req, resp);
 				viewPath = "/views/update.jsp";
 			} else if ("POST".equalsIgnoreCase(method)) {
 				handleUpdate(req, resp);
+				viewPath = "/views/create_update.jsp";
+			}else {
 				viewPath = "/views/create_update.jsp";
 			}
 		} else if (url.contains("thongtincanhan")) {
