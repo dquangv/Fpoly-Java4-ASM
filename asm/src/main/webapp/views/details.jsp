@@ -47,13 +47,15 @@
 							<c:choose>
 								<c:when test="${watched != null && watched.liked}">
 									<span class="fw-bold"><a
-										href="${pageContext.request.contextPath}/unlike_video_detail/${video.id}" style="text-decoration: none"><i
-										class="bi bi-hand-thumbs-up-fill"></i></a> 3.1K</span>
+										href="${pageContext.request.contextPath}/unlike_video_detail/${video.id}"
+										style="text-decoration: none"><i
+											class="bi bi-hand-thumbs-up-fill"></i></a> 3.1K</span>
 								</c:when>
 								<c:otherwise>
 									<a
-										href="${pageContext.request.contextPath}/like_detail/${video.id}" style="text-decoration: none">
-										<i class="bi bi-hand-thumbs-up"></i>
+										href="${pageContext.request.contextPath}/like_detail/${video.id}"
+										style="text-decoration: none"> <i
+										class="bi bi-hand-thumbs-up"></i>
 									</a>
 									3.1K
 								</c:otherwise>
@@ -66,8 +68,40 @@
 					</div>
 					<div
 						class="rounded-pill d-flex justify-content-between align-items-center px-3 gap-2"
-						style="background-color: #272727; cursor: pointer">
+						style="background-color: #272727; cursor: pointer"
+						data-bs-toggle="modal" data-bs-target="#exampleModal">
 						<i class="bi bi-share-fill"></i> Share
+					</div>
+
+					<div class="modal fade" id="exampleModal" tabindex="-1"
+						aria-labelledby="exampleModalLabel" aria-hidden="true">
+						<div class="modal-dialog">
+							<div class="modal-content">
+
+								<div class="modal-header">
+									<h1 class="modal-title fs-5 text-black" id="exampleModalLabel">Chia
+										sẻ video</h1>
+								</div>
+								<div class="modal-body">
+									<form
+										action="${pageContext.request.contextPath}/views/send-mail/${video.id}"
+										method="POST" class="d-flex flex-column" role="search"
+										style="width: 100%">
+									<input name="emails"
+										class="form-control bg-black w-75 mx-auto text-white my-3"
+										type="text"
+										placeholder="Các email ngăn cách nhau bởi dấu phẩy"
+										aria-label="default input example">
+									<div class="d-flex justify-content-end w-100 mt-2">
+										<button type="submit"
+												class="btn btn-primary me-2">Gửi</button>
+										<button type="button" class="btn btn-secondary"
+											data-bs-dismiss="modal">Đóng</button>
+									</div>
+									</form>
+								</div>
+							</div>
+						</div>
 					</div>
 
 					<div
@@ -272,7 +306,9 @@
 
 				<div class="container">
 					<c:forEach var="item" items="${listViDeo}">
-						<a href="${pageContext.request.contextPath}/views/details/${item.id}" class="text-decoration-none">
+						<a
+							href="${pageContext.request.contextPath}/views/details/${item.id}"
+							class="text-decoration-none">
 							<div class="row mb-2" style="height: 96px">
 								<div class="col-5 h-100">
 
