@@ -116,7 +116,7 @@ public class MainPageServlet extends HttpServlet {
 			String uri = req.getRequestURI();
 			String path = req.getPathInfo();
 			int videoId = Integer.parseInt(path.substring(1));
-			Integer userId = (Integer) session.getAttribute("userId");
+			Integer userId = user.getId();
 			Video video = vidDao.findById(videoId);
 			WatchedDAO dao = new WatchedDAO();
 			Watched watched = null;
