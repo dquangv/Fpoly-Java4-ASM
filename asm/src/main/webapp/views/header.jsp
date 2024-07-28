@@ -3,11 +3,11 @@
 <%
 String userImage = (String) session.getAttribute("userImg");
 if (userImage == null || userImage.isEmpty()) {
-	userImage = "../img/default_user_avatar.jpg";
+	userImage = "fpoly/views/img/default_user_avatar.jpg";
 } else {
 	String urlRegex = "^(http|https)://.*$";
 	if (!userImage.matches(urlRegex)) {
-		userImage = "../img/" + userImage;
+		userImage = "/fpoly/img/" + userImage;
 	}
 }
 %>
