@@ -8,6 +8,7 @@ import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
 import com.bean.Video;
+import com.bean.VideoStatistics;
 import com.utils.JpaUtils;
 
 public class VideoDAO {
@@ -129,21 +130,53 @@ public class VideoDAO {
 	}
 
 	public List<Video> getVideoStatistics() {
-		List<Video> videos = new ArrayList<>();
-		EntityManager em = JpaUtils.getEntityManager();
+	    List<Video> videos = new ArrayList<>();
+	    EntityManager em = JpaUtils.getEntityManager();
+	    EntityTransaction transaction = null;
+	    try {
+	        transaction = em.getTransaction();
+	        transaction.begin();
+
+	        Query query = em.createNativeQuery("SELECT * FROM get_video_statistics()");
+	        List<Object[]> results = query.getResultList();
+	        for (Object[] result : results) {
+	            Video video = new Video();
+	            video.setTitle((String) result[0]);
+	            Long likes = result[1] != null ? ((Number) result[1]).longValue() : 0L;
+	            video.setViews(likes); 
+	            videos.add(video);
+	        }
+
+	        transaction.commit();
+	    } catch (Exception e) {
+	        if (transaction != null) {
+	            transaction.rollback();
+	        }
+	        e.printStackTrace();
+	    } finally {
+	        em.close();
+	    }
+	    return videos;
+	}
+
+
+	public List<VideoStatistics> getDetailedVideoStatistics() {
+		List<VideoStatistics> videoStatisticsList = new ArrayList<>();
+		em = JpaUtils.getEntityManager();
 		EntityTransaction transaction = null;
 		try {
 			transaction = em.getTransaction();
 			transaction.begin();
 
-			Query query = em.createNativeQuery("SELECT * FROM get_video_statistics()");
+			Query query = em.createNativeQuery("SELECT * FROM get_likes_per_video()");
 			List<Object[]> results = query.getResultList();
 			for (Object[] result : results) {
-				Video video = new Video();
-				video.setTitle((String) result[0]);
-				Long views = result[1] != null ? ((Number) result[1]).longValue() : 0L;
-				video.setViews(views);
-				videos.add(video);
+				VideoStatistics videoStatistics = new VideoStatistics();
+				videoStatistics.setVideoTitle((String) result[0]);
+				videoStatistics.setUserFullname((String) result[1]);
+				videoStatistics.setUserEmail((String) result[2]);
+				videoStatistics.setLikeDate((java.sql.Date) result[3]);
+				videoStatisticsList.add(videoStatistics);
 			}
 
 			transaction.commit();
@@ -155,7 +188,22 @@ public class VideoDAO {
 		} finally {
 			em.close();
 		}
-		return videos;
+		return videoStatisticsList;
+	}
+
+	public List<String> getDistinctVideoTitles() {
+		em = JpaUtils.getEntityManager();
+		List<String> videoTitles = new ArrayList<>();
+		try {
+			String jpql = "SELECT DISTINCT v.title FROM Video v";
+			TypedQuery<String> query = em.createQuery(jpql, String.class);
+			videoTitles = query.getResultList();
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			em.close();
+		}
+		return videoTitles;
 	}
 
 	public List<Video> searchVideo(String keyword) {

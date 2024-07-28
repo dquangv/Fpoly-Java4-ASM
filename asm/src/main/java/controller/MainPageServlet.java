@@ -17,6 +17,7 @@ import javax.servlet.http.Part;
 import javax.servlet.http.HttpSession;
 
 import com.bean.Video;
+import com.bean.VideoStatistics;
 import com.bean.Watched;
 import com.dao.VideoDAO;
 import com.dao.WatchedDAO;
@@ -91,7 +92,10 @@ public class MainPageServlet extends HttpServlet {
 			dispatcher.include(req, resp);
 			List<Video> videoStatistics = (List<Video>) req.getAttribute("videoStatistics");
 			req.setAttribute("videoStatistics", videoStatistics);
-
+			List<VideoStatistics> videoDetailStatistics = (List<VideoStatistics>) req.getAttribute("videoDetailStatistics");
+			req.setAttribute("videoDetailStatistics", videoDetailStatistics);
+			List<String> distinctVideoTitles = (List<String>) req.getAttribute("distinctVideoTitles");
+			req.setAttribute("distinctVideoTitles", distinctVideoTitles);
 			viewPath = "/views/thongke.jsp";
 		} else if (url.contains("favorite_video")) {
 			if (email != null) {

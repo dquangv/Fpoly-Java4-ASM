@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.bean.Video;
+import com.bean.VideoStatistics;
 import com.dao.VideoDAO;
 
 @WebServlet("/VideoStatistics")
@@ -17,8 +18,14 @@ public class VideoStatisticsServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        List<Video> videoStatistics = videoDAO.getVideoStatistics();
-        req.setAttribute("videoStatistics", videoStatistics);
+    	 List<Video> videoStatistics = videoDAO.getVideoStatistics();
+    	    req.setAttribute("videoStatistics", videoStatistics);
+    	    
+    	    List<VideoStatistics> videoDetailStatistics = videoDAO.getDetailedVideoStatistics();
+    	    req.setAttribute("videoDetailStatistics", videoDetailStatistics);
+    	    
+    	    List<String> distinctVideoTitles = videoDAO.getDistinctVideoTitles();
+    	    req.setAttribute("distinctVideoTitles", distinctVideoTitles);
     }
 
 }
