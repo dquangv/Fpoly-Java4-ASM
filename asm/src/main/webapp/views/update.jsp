@@ -26,7 +26,7 @@
 					required>
 			</div>
 			<div class="row">
-				<div class="mb-3 col-xl-2">
+				<div class="mb-3 col-xl-2" style="display: none">
 					<label for="videoImage" class="form-label">Hình ảnh video</label>
 					<div class="image-wrapper">
 						<img id="videoImage" src="${video.poster}"
@@ -35,7 +35,7 @@
 							name="photo" type="file" id="videoImageInput" class="d-none">
 					</div>
 				</div>
-				<div class="mb-3 col-xl-10">
+				<div class="mb-3 col">
 					<label for="imageDescription" class="form-label">Mô tả</label>
 					<textarea class="form-control" id="imageDescription"
 						name="imageDescription"

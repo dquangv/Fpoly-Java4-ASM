@@ -2,6 +2,7 @@ package controller;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -231,6 +232,19 @@ public class MainPageServlet extends HttpServlet {
 		req.setAttribute("view", viewPath);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
+	
+	String getYouTubeVideoID(String url) throws Exception {
+        URL youtubeUrl = new URL(url);
+        String query = youtubeUrl.getQuery();
+        String[] params = query.split("&");
+        for (String param : params) {
+            String[] pair = param.split("=");
+            if (pair[0].equals("v")) {
+                return pair[1];
+            }
+        }
+        return null;
+    }
 
 	private void handleFileUpload(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -243,37 +257,44 @@ public class MainPageServlet extends HttpServlet {
 
 		String fileName = null;
 		Part filePart = request.getPart("photo");
-
+		String videoTitle = request.getParameter("videoTitle");
+		String videoLink = request.getParameter("videoLink");
 		try {
-			if (filePart != null && filePart.getSubmittedFileName() != null
-					&& !filePart.getSubmittedFileName().isEmpty() && uploadDir.exists()) {
+			videoLink = "https://www.youtube.com/embed/"+getYouTubeVideoID(videoLink);
 
-				fileName = filePart.getSubmittedFileName();
-				filePart.write(uploadFilePath + File.separator + fileName);
-
-				String videoTitle = request.getParameter("videoTitle");
-				String videoLink = request.getParameter("videoLink");
-				String description = request.getParameter("imageDescription");
-				String activateParam = request.getParameter("activationOptions");
-
-				boolean activate = "yes".equals(activateParam);
-				System.out.println("upload file " + uploadFilePath + File.separator + fileName);
-				Video video = new Video();
-				video.setTitle(videoTitle);
-				video.setLink(videoLink);
-				video.setPoster(fileName);
-				video.setActive(activate);
-				video.setDescription(description);
-
-				vidDao.create(video);
-				System.out.println("Video tạo thành công");
-
-			} else {
-				System.out.println("Video tạo thất bại");
-			}
-		} catch (Exception ex) {
-			System.out.println("Error : " + ex.getMessage());
+		}catch(Exception ex) {
+			
+			System.out.println(ex.getMessage());
 		}
+		String description = request.getParameter("imageDescription");
+		String activateParam = request.getParameter("activationOptions");
+
+		boolean activate = "yes".equals(activateParam);
+		System.out.println("upload file " + uploadFilePath + File.separator + fileName);
+		Video video = new Video();
+		video.setTitle(videoTitle);
+		video.setLink(videoLink);
+//		video.setPoster(fileName);
+		video.setActive(activate);
+		video.setDescription(description);
+
+		vidDao.create(video);
+		System.out.println("Video tạo thành công");
+//		try {
+//			if (filePart != null && filePart.getSubmittedFileName() != null
+//					&& !filePart.getSubmittedFileName().isEmpty() && uploadDir.exists()) {
+//
+//				fileName = filePart.getSubmittedFileName();
+//				filePart.write(uploadFilePath + File.separator + fileName);
+//
+//			
+//
+//			} else {
+//				System.out.println("Video tạo thất bại");
+//			}
+//		} catch (Exception ex) {
+//			System.out.println("Error : " + ex.getMessage());
+//		}
 	}
 
 	private void handleGetVideo(HttpServletRequest request, HttpServletResponse response)

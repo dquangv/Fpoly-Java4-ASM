@@ -58,20 +58,20 @@
 						<div class="mb-3">
 							<label for="videoTitle" class="form-label">Tiêu đề</label> <input
 								type="text" class="form-control" id="videoTitle"
-								name="videoTitle" aria-describedby="titleHelp" value="user"
+								name="videoTitle" aria-describedby="titleHelp" 
 								style="background-color: transparent !important; color: white"
 								required>
 						</div>
 						<div class="mb-3">
 							<label for="videoLink" class="form-label">Link video</label> <input
 								type="text" class="form-control" id="videoLink" name="videoLink"
-								value="user"
+								
 								style="background-color: transparent !important; color: white"
 								required>
 						</div>
 						<div class="row">
-							<div class="mb-3 col-xl-2">
-								<label for="test" class="form-label">Hình ảnh videos</label>
+							<div class="mb-3 col-xl-2" style="display: none">
+								<label for="test" class="form-label">Hình ảnh</label>
 								<div class="image-wrapper">
 									<img id="videoImage"
 										src="https://media.istockphoto.com/id/1409329028/vector/no-picture-available-placeholder-thumbnail-icon-illustration-design.jpg?s=612x612&w=0&k=20&c=_zOuJu755g2eEUioiOUdz_mHKJQJn-tDgIAhQzyeKUQ="
@@ -80,9 +80,8 @@
 									<input name="photo" type="file" id="test" class="d-none">
 								</div>
 							</div>
-							<div class="mb-3 col-xl-10">
-								<label for="imageDescription" class="form-label">Mô tả
-									hình ảnh</label>
+							<div class="mb-3">
+								<label for="imageDescription" class="form-label">Mô tả</label>
 								<textarea class="form-control" id="imageDescription"
 									name="imageDescription" aria-describedby="imageDescriptionHelp"
 									style="background-color: transparent !important; color: white; height: 150px !important"></textarea>
@@ -154,7 +153,9 @@
 						<td
 							style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">${video.views}</td>
 						<td
-							style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">${video.active == true ? "Hoạt động" : "Không hoạt động" }</td>
+							style="background-color: rgba(255, 255, 255, 0.1);font-weight: bold !important; color: ${video.active ? 'green' : 'red'};">
+							${video.active ? "Hoạt động" : "Không hoạt động"}</td>
+
 						<td class="d-flex gap-2"
 							style="background-color: rgba(255, 255, 255, 0.1) !important; color: white !important">
 							<form
@@ -164,13 +165,7 @@
 								<button type="submit" class="btn btn-success"
 									style="background-color: green !important">Cập nhật</button>
 							</form>
-							<form
-								action="${pageContext.request.contextPath}/views/delete_video"
-								method="post" class="buttonDelete">
-								<input type="hidden" name="videoId" value="${video.id}">
-								<button type="submit" class="btn btn-danger"
-									style="background-color: red !important">Xóa</button>
-							</form>
+
 						</td>
 					</tr>
 
@@ -186,7 +181,8 @@
 						<li class="page-item"><a class="page-link"
 							href="?page=${currentPage - 1}" tabindex="-1">Previous</a></li>
 					</c:if>
-					<c:forEach var="i" begin="0" end="${totalPages - 1}" varStatus="status">
+					<c:forEach var="i" begin="0" end="${totalPages - 1}"
+						varStatus="status">
 						<li
 							class="page-item ${status.index + 1 == currentPage ? 'active' : ''}">
 							<a class="page-link" href="?page=${status.index + 1}">${status.index + 1}</a>
