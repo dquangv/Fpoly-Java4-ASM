@@ -22,6 +22,7 @@ import com.bean.VideoStatistics;
 import com.bean.Watched;
 import com.dao.VideoDAO;
 import com.dao.WatchedDAO;
+import com.bean.Share;
 import com.bean.User;
 
 import com.dao.UserDao;
@@ -95,6 +96,9 @@ public class MainPageServlet extends HttpServlet {
 			req.setAttribute("videoDetailStatistics", videoDetailStatistics);
 			List<String> distinctVideoTitles = (List<String>) req.getAttribute("distinctVideoTitles");
 			req.setAttribute("distinctVideoTitles", distinctVideoTitles);
+			
+			List<Share> Share = (List<Share>) req.getAttribute("shareList");
+			req.setAttribute("shareVideo", Share);
 			viewPath = "/views/thongke.jsp";
 		} else if (url.contains("favorite_video")) {
 			if (email != null) {

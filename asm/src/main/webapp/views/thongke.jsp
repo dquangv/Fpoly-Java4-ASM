@@ -77,8 +77,9 @@ table thead th {
 table tbody tr:hover {
 	background-color: #383838;
 }
+
 input.form-control::placeholder {
-    color: #bbb;
+	color: #bbb;
 }
 </style>
 </head>
@@ -91,16 +92,16 @@ input.form-control::placeholder {
 					<ul class="nav nav-tabs" id="myTab" role="tablist">
 						<li class="nav-item"><a class="nav-link active"
 							id="likes-tab" data-bs-toggle="tab" href="#likes" role="tab"
-							aria-controls="likes" aria-selected="true">Thống kê lượt thích</a>
-						</li>
+							aria-controls="likes" aria-selected="true">Thống kê lượt
+								thích</a></li>
 						<li class="nav-item"><a class="nav-link" id="user-likes-tab"
 							data-bs-toggle="tab" href="#user-likes" role="tab"
 							aria-controls="user-likes" aria-selected="false">Danh sách
 								người thích</a></li>
-<!-- 						<li class="nav-item"><a class="nav-link" id="user-shared-tab"
+						<li class="nav-item"><a class="nav-link" id="user-shared-tab"
 							data-bs-toggle="tab" href="#user-shared" role="tab"
 							aria-controls="user-shared" aria-selected="false">Danh sách
-								chia sẻ</a></li> -->
+								chia sẻ</a></li>
 					</ul>
 					<div class="tab-content" id="myTabContent">
 						<div class="tab-pane fade show active" id="likes" role="tabpanel"
@@ -141,55 +142,49 @@ input.form-control::placeholder {
 								</thead>
 								<tbody>
 									<c:forEach var="video" items="${videoDetailStatistics}">
-										 <tr class="user-like-row"
-                                            data-video-title="${video.videoTitle}"
-                                            data-user-fullname="${video.userFullname}"
-                                            data-user-email="${video.userEmail}">
-                                            <td>${video.videoTitle}</td>
-                                            <td>${video.userFullname}</td>
-                                            <td>${video.userEmail}</td>
-                                            <td>${video.likeDate}</td>
-                                        </tr>
+										<tr class="user-like-row"
+											data-video-title="${video.videoTitle}"
+											data-user-fullname="${video.userFullname}"
+											data-user-email="${video.userEmail}">
+											<td>${video.videoTitle}</td>
+											<td>${video.userFullname}</td>
+											<td>${video.userEmail}</td>
+											<td>${video.likeDate}</td>
+										</tr>
 									</c:forEach>
 								</tbody>
 							</table>
 						</div>
-						<!-- <div class="tab-pane fade" id="user-shared" role="tabpanel" aria-labelledby="user-shared-tab">
-                        <select class="form-select" aria-label="Default select example">
-                            <option selected>Lọc theo video</option>
-                        </select>
-                        <table class="table table-striped table-dark mt-4">
-                            <thead>
-                            <tr>
-                                <th>Sender Name</th>
-                                <th>Sender Email</th>
-                                <th>Receiver Email</th>
-                                <th>Sent Date</th>
-                            </tr>
-                            </thead>
-                            <tbody>
-                            Sample data for user shares
-                            <tr>
-                                <td>name1</td>
-                                <td>email1</td>
-                                <td>receiverEmail1</td>
-                                <td>Thursday</td>
-                            </tr>
-                            <tr>
-                                <td>name2</td>
-                                <td>email2</td>
-                                <td>receiverEmail2</td>
-                                <td>Friday</td>
-                            </tr>
-                            <tr>
-                                <td>name3</td>
-                                <td>email3</td>
-                                <td>receiverEmail3</td>
-                                <td>Saturday</td>
-                            </tr>
-                            </tbody>
-                        </table>
-                    </div> -->
+						<div class="tab-pane fade" id="user-shared" role="tabpanel"
+							aria-labelledby="user-shared-tab">
+							<input type="text" id="shareInput" class="form-control"
+								placeholder="Nhập tên video, fullname hoặc email để lọc">
+							<table class="table table-striped table-dark mt-4"
+								id="userShareTable">
+								<thead>
+									<tr>
+										<th>Sender Name</th>
+										<th>Sender Email</th>
+										<th>Receiver Email</th>
+										<th>Sent Date</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach var="share" items="${shareVideo}">
+										<tr class="user-share-row"
+											data-share-video-title="${share.user.fullname}"
+											data-share-user-fullname="${share.user.email}"
+											data-share-user-email="${share.email}">
+											<td>${share.user.fullname}</td>
+											<td>${share.user.email}</td>
+											<td>${share.email}</td>
+											<td>${share.shareDate}</td>
+										</tr>
+									</c:forEach>
+
+								</tbody>
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>
@@ -248,6 +243,21 @@ input.form-control::placeholder {
                 }
             });
         });
+        document.getElementById('shareInput').addEventListener('input', function () {
+            var keyword = this.value.toLowerCase();
+            var rows = document.querySelectorAll('#userShareTable .user-share-row');
+            rows.forEach(function (row) {
+                var videoTitle = row.getAttribute('data-share-video-title').toLowerCase();
+                var userFullname = row.getAttribute('data-share-user-fullname').toLowerCase();
+                var userEmail = row.getAttribute('data-share-user-email').toLowerCase();
+                if (videoTitle.includes(keyword) || userFullname.includes(keyword) || userEmail.includes(keyword)) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+        });
+
     </script>
 	</main>
 </body>
