@@ -79,11 +79,8 @@ public class MainPageServlet extends HttpServlet {
 
 			req.setAttribute("listViDeo", listViDeo);
 		} else if (url.contains("watched")) {
-			// Chuyển tiếp yêu cầu đến /watched_video
 			RequestDispatcher dispatcher = req.getRequestDispatcher("/watched_video");
 			dispatcher.include(req, resp);
-
-			// Lấy danh sách video đã xem từ request
 			List<Video> watchedVideo = (List<Video>) req.getAttribute("listVideo");
 			req.setAttribute("watched_video", watchedVideo);
 
@@ -93,7 +90,8 @@ public class MainPageServlet extends HttpServlet {
 			dispatcher.include(req, resp);
 			List<Video> videoStatistics = (List<Video>) req.getAttribute("videoStatistics");
 			req.setAttribute("videoStatistics", videoStatistics);
-			List<VideoStatistics> videoDetailStatistics = (List<VideoStatistics>) req.getAttribute("videoDetailStatistics");
+			List<VideoStatistics> videoDetailStatistics = (List<VideoStatistics>) req
+					.getAttribute("videoDetailStatistics");
 			req.setAttribute("videoDetailStatistics", videoDetailStatistics);
 			List<String> distinctVideoTitles = (List<String>) req.getAttribute("distinctVideoTitles");
 			req.setAttribute("distinctVideoTitles", distinctVideoTitles);
@@ -232,19 +230,19 @@ public class MainPageServlet extends HttpServlet {
 		req.setAttribute("view", viewPath);
 		req.getRequestDispatcher("/index.jsp").forward(req, resp);
 	}
-	
+
 	String getYouTubeVideoID(String url) throws Exception {
-        URL youtubeUrl = new URL(url);
-        String query = youtubeUrl.getQuery();
-        String[] params = query.split("&");
-        for (String param : params) {
-            String[] pair = param.split("=");
-            if (pair[0].equals("v")) {
-                return pair[1];
-            }
-        }
-        return null;
-    }
+		URL youtubeUrl = new URL(url);
+		String query = youtubeUrl.getQuery();
+		String[] params = query.split("&");
+		for (String param : params) {
+			String[] pair = param.split("=");
+			if (pair[0].equals("v")) {
+				return pair[1];
+			}
+		}
+		return null;
+	}
 
 	private void handleFileUpload(HttpServletRequest request, HttpServletResponse resp)
 			throws ServletException, IOException {
@@ -256,14 +254,16 @@ public class MainPageServlet extends HttpServlet {
 		}
 
 		String fileName = null;
-		Part filePart = request.getPart("photo");
+//		Part filePart = request.getPart("photo");
 		String videoTitle = request.getParameter("videoTitle");
 		String videoLink = request.getParameter("videoLink");
+		String imgUrl = videoLink;
 		try {
-			videoLink = "https://www.youtube.com/embed/"+getYouTubeVideoID(videoLink);
+			videoLink = "https://www.youtube.com/embed/" + getYouTubeVideoID(videoLink);
+			imgUrl = "https://img.youtube.com/vi/" +  getYouTubeVideoID(imgUrl) + "/0.jpg";
 
-		}catch(Exception ex) {
-			
+		} catch (Exception ex) {
+
 			System.out.println(ex.getMessage());
 		}
 		String description = request.getParameter("imageDescription");
@@ -274,12 +274,11 @@ public class MainPageServlet extends HttpServlet {
 		Video video = new Video();
 		video.setTitle(videoTitle);
 		video.setLink(videoLink);
-//		video.setPoster(fileName);
+		System.out.println(imgUrl+"IIIIIIIIIMMMMMMMMMMMGGGGGGGGGGGGGG");
+		video.setPoster(imgUrl);
 		video.setActive(activate);
 		video.setDescription(description);
-
 		vidDao.create(video);
-		System.out.println("Video tạo thành công");
 //		try {
 //			if (filePart != null && filePart.getSubmittedFileName() != null
 //					&& !filePart.getSubmittedFileName().isEmpty() && uploadDir.exists()) {

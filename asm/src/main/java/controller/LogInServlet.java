@@ -22,6 +22,7 @@ public class LogInServlet extends HttpServlet {
 		if (code != null && !code.isEmpty()) {
 			try {
 				String accessToken = GoogleUtils.getToken(code);
+				System.out.println(accessToken+"linkkkkkkkkkkkkk");
 				User googleUser = GoogleUtils.getUserInfo(accessToken);
 
 				UserDao userDao = new UserDao();
