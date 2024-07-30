@@ -75,7 +75,7 @@ if (userImage == null || userImage.isEmpty()) {
 					class="input-group mb-3 rounded-pill mx-auto overflow-hidden border h-100 outline-none"
 					style="border: 1px solid #272727 !important; margin: auto 0 !important; outline: none; border: none; outline: none;">
 					<form action="${pageContext.request.contextPath}/views/search"
-						method="GET" class="d-flex" role="search" style="width:100%">
+						method="GET" class="d-flex" role="search" style="width: 100%">
 						<input type="text" name="search" class="form-control"
 							placeholder="Tìm kiếm" aria-label="Username"
 							aria-describedby="basic-addon1"
@@ -87,7 +87,8 @@ if (userImage == null || userImage.isEmpty()) {
 						</button>
 					</form>
 				</div>
-				<button class="btn btn-primary rounded-circle overflow-hidden" style="width:50px">
+				<button class="btn btn-primary rounded-circle overflow-hidden"
+					style="width: 50px">
 					<i class="bi bi-mic"></i>
 				</button>
 			</div>

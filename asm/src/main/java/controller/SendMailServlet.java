@@ -96,14 +96,21 @@ public class SendMailServlet extends HttpServlet {
 	        for (String mail : emailArray) {
 	        	emailList.add(mail);
 	        }
-	        // Lấy userId từ session dưới dạng Integer
-            Integer userIdObj = (Integer) httpSession.getAttribute("userId");
-            int userId = 0;
-            if (userIdObj != null) {
-                userId = userIdObj.intValue();
-            }
-
-	        dao.updateOrInsertWatched(userId, videoId, emailList);
+//	        // Lấy userId từ session dưới dạng Integer
+//            Integer userIdObj = (Integer) httpSession.getAttribute("userId");
+//            int userId = 0;
+//            if (userIdObj != null) {
+//                userId = userIdObj.intValue();
+//            }
+//
+//	        dao.updateOrInsertWatched(userId, videoId, emailList);
+	        Share share = new Share();
+	        share.setUser(userAccount);
+	        share.setEmail(emailList);
+	        share.setVideo(video);
+	        share.setShareDate(new Date());
+	        
+	        dao.create(share);
 	       
 	    } catch (MessagingException e) {
 	        e.printStackTrace();
