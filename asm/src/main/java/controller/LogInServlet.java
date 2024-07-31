@@ -22,7 +22,7 @@ public class LogInServlet extends HttpServlet {
 		if (code != null && !code.isEmpty()) {
 			try {
 				String accessToken = GoogleUtils.getToken(code);
-				System.out.println(accessToken+"linkkkkkkkkkkkkk");
+				System.out.println(accessToken + "linkkkkkkkkkkkkk");
 				User googleUser = GoogleUtils.getUserInfo(accessToken);
 
 				UserDao userDao = new UserDao();
@@ -34,6 +34,8 @@ public class LogInServlet extends HttpServlet {
 				HttpSession session = request.getSession();
 				session.setAttribute("user", googleUser.getEmail());
 				session.setAttribute("userImg", googleUser.getImage());
+				session.setAttribute("userRole", googleUser.isAdmin());
+//				session.setAttribute("userId", googleUser.getId());
 				response.sendRedirect(request.getContextPath() + "/views/TrangChu");
 				return;
 			} catch (Exception e) {
@@ -58,6 +60,7 @@ public class LogInServlet extends HttpServlet {
 			HttpSession session = request.getSession();
 			session.setAttribute("user", user.getEmail());
 			session.setAttribute("userImg", user.getImage());
+			session.setAttribute("userRole", user.isAdmin());
 			request.setAttribute("success", "Đăng nhập thành công!");
 			response.sendRedirect(request.getContextPath() + "/views/TrangChu");
 		} else {

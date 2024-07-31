@@ -79,7 +79,7 @@ public class Share {
 	}
 
 	public void setShareDate(Date shareDate) {
-		shareDate = shareDate;
+		this.shareDate = shareDate;
 	}
 
 }

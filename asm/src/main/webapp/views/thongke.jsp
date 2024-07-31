@@ -163,6 +163,7 @@ input.form-control::placeholder {
 								id="userShareTable">
 								<thead>
 									<tr>
+										<th>Video Title</th>
 										<th>Sender Name</th>
 										<th>Sender Email</th>
 										<th>Receiver Email</th>
@@ -172,9 +173,11 @@ input.form-control::placeholder {
 								<tbody>
 									<c:forEach var="share" items="${shareVideo}">
 										<tr class="user-share-row"
-											data-share-video-title="${share.user.fullname}"
-											data-share-user-fullname="${share.user.email}"
-											data-share-user-email="${share.email}">
+											data-share-video-title="${share.video.title}"
+											data-share-user-fullname="${share.user.fullname}"
+											data-share-user-email="${share.user.email}"
+											data-share-user-emailReceive="${share.email}">
+											<td>${share.video.title}</td>
 											<td>${share.user.fullname}</td>
 											<td>${share.user.email}</td>
 											<td>${share.email}</td>
@@ -184,6 +187,11 @@ input.form-control::placeholder {
 
 								</tbody>
 							</table>
+							<a href="exportPdf"
+								class="btn btn-primary">Xuất ra PDF</a> <a
+								href="exportExcel"
+								class="btn btn-primary">Xuất ra Excel</a>
+
 						</div>
 					</div>
 				</div>
@@ -199,13 +207,13 @@ input.form-control::placeholder {
             data: {
                 labels: [<c:forEach var="video" items="${videoStatistics}" varStatus="status">
                     <c:if test="${status.index > 0}">, </c:if>
-                    '<c:out value="${video.title}"/>'
+                    "<c:out value="${video.title}"/>"
                 </c:forEach>],
                 datasets: [{
                     label: 'Lượt thích',
                     data: [<c:forEach var="video" items="${videoStatistics}" varStatus="status">
                         <c:if test="${status.index > 0}">, </c:if>
-                        '<c:out value="${video.views}"/>'
+                        <c:out value="${video.views}"/>
                     </c:forEach>],
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
@@ -243,6 +251,7 @@ input.form-control::placeholder {
                 }
             });
         });
+        
         document.getElementById('shareInput').addEventListener('input', function () {
             var keyword = this.value.toLowerCase();
             var rows = document.querySelectorAll('#userShareTable .user-share-row');
@@ -250,7 +259,8 @@ input.form-control::placeholder {
                 var videoTitle = row.getAttribute('data-share-video-title').toLowerCase();
                 var userFullname = row.getAttribute('data-share-user-fullname').toLowerCase();
                 var userEmail = row.getAttribute('data-share-user-email').toLowerCase();
-                if (videoTitle.includes(keyword) || userFullname.includes(keyword) || userEmail.includes(keyword)) {
+                var userEmailReceive = row.getAttribute('data-share-user-emailReceive').toLowerCase();
+                if (videoTitle.includes(keyword) || userFullname.includes(keyword) || userEmail.includes(keyword) || userEmailReceive.includes(keyword)) {
                     row.style.display = '';
                 } else {
                     row.style.display = 'none';
