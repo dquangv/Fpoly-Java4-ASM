@@ -30,7 +30,7 @@ public class VideoStatisticsServlet extends HttpServlet {
     	    List<String> distinctVideoTitles = videoDAO.getDistinctVideoTitles();
     	    req.setAttribute("distinctVideoTitles", distinctVideoTitles);
     	    
-    	    List<Share> shareList = shareDAO.findAll();
+    	    List<Share> shareList = shareDAO.findAllAndGroup();
     	    req.setAttribute("shareList", shareList);
     }
 

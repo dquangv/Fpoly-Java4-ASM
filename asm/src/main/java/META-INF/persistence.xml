@@ -10,7 +10,7 @@
             <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
             <property name="javax.persistence.jdbc.url" value="jdbc:postgresql://pg-1c423402-buiminhquang2002-69f9.i.aivencloud.com:13281/java4-asm" />
             <property name="javax.persistence.jdbc.user" value="avnadmin" />
-            <property name="javax.persistence.jdbc.password" value="AVNS_tWzIblsyBbPq5LwVCN8" />
+            <property name="javax.persistence.jdbc.password" value="AVNS_CklxFGEmRHYpeKQl48Z" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
