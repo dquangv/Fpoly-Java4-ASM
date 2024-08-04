@@ -191,5 +191,60 @@ VALUES
 (3, 9, '2024-07-30', '2024-07-30 11:23:06.438', 0),
 (3, 4, '2024-07-30', '2024-07-30 11:35:07.802', 0);
 go
+CREATE OR ALTER FUNCTION dbo.get_video_statistics()
+RETURNS @result TABLE (
+    [Tên Video] NVARCHAR(255),
+    [Lượt Thích] BIGINT
+)
+AS
+BEGIN
+    INSERT INTO @result
+    SELECT 
+        v.title AS [Tên Video],
+        COUNT(CASE WHEN w.isliked = 1 THEN 1 END) AS [Lượt Thích]
+    FROM 
+        dbo.video v
+    JOIN 
+        dbo.watched w ON v.id = w.videoid
+    GROUP BY 
+        v.title
+    ORDER BY 
+        v.title;
+
+    RETURN;
+END;
+GO
+
+
+CREATE OR ALTER FUNCTION dbo.get_likes_per_video()
+RETURNS @result TABLE (
+    video_title NVARCHAR(255),
+    user_fullname NVARCHAR(255),
+    user_email NVARCHAR(255),
+    like_date DATE
+)
+AS
+BEGIN
+    INSERT INTO @result
+    SELECT
+        v.title AS video_title,
+        a.fullname AS user_fullname,
+        a.email AS user_email,
+        w.likedate AS like_date
+    FROM
+        dbo.watched w
+    JOIN
+        dbo.account a ON w.userid = a.id
+    JOIN
+        dbo.video v ON w.videoid = v.id
+    WHERE
+        w.isliked = 1
+    ORDER BY
+        v.title;
+
+    RETURN;
+END;
+GO
+
 
 

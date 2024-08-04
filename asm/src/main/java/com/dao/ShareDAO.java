@@ -49,17 +49,13 @@ public class ShareDAO {
     public List<Share> findAllAndGroup() {
         List<Share> shares = findAll();
         Map<String, Share> groupedShares = new HashMap<>();
-
         for (Share share : shares) {
             String key = share.getVideo().getTitle() + "_" + share.getUser().getFullname() + "_" + share.getUser().getEmail();
-
             if (groupedShares.containsKey(key)) {
                 Share existingShare = groupedShares.get(key);
-                for (String email : share.getEmail()) {
-                    if (!existingShare.getEmail().contains(email)) {
-                        existingShare.getEmail().add(email);
-                    }
-                }
+                Set<String> emails = new HashSet<>(existingShare.getEmail());
+                emails.addAll(share.getEmail());
+                existingShare.setEmail(new ArrayList<>(emails));
                 if (share.getShareDate().after(existingShare.getShareDate())) {
                     existingShare.setShareDate(share.getShareDate());
                 }
@@ -67,12 +63,11 @@ public class ShareDAO {
                 Share newShare = new Share();
                 newShare.setVideo(share.getVideo());
                 newShare.setUser(share.getUser());
-                newShare.setEmail(new ArrayList<>(share.getEmail()));
+                newShare.setEmail(new ArrayList<>(new HashSet<>(share.getEmail())));
                 newShare.setShareDate(share.getShareDate());
                 groupedShares.put(key, newShare);
             }
         }
-
         return new ArrayList<>(groupedShares.values());
     }
 

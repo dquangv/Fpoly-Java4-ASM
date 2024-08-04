@@ -94,11 +94,11 @@ public class MainPageServlet extends HttpServlet {
 			List<VideoStatistics> videoDetailStatistics = (List<VideoStatistics>) req
 					.getAttribute("videoDetailStatistics");
 			req.setAttribute("videoDetailStatistics", videoDetailStatistics);
-			List<String> distinctVideoTitles = (List<String>) req.getAttribute("distinctVideoTitles");
-			req.setAttribute("distinctVideoTitles", distinctVideoTitles);
-			
-			List<Share> Share = (List<Share>) req.getAttribute("shareList");
-			req.setAttribute("shareVideo", Share);
+//			List<String> distinctVideoTitles = (List<String>) req.getAttribute("distinctVideoTitles");
+//			req.setAttribute("distinctVideoTitles", distinctVideoTitles);
+//			
+//			List<Share> Share = (List<Share>) req.getAttribute("shareList");
+//			req.setAttribute("shareVideo", Share);
 			viewPath = "/views/thongke.jsp";
 		} else if (url.contains("favorite_video")) {
 			if (email != null) {
