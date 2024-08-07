@@ -73,7 +73,7 @@ public class MainPageServlet extends HttpServlet {
 		if (url.contains("TrangChu")) {
 			viewPath = "/views/TrangChu.jsp";
 			List<Video> listViDeo = vidDao.findAll();
-			if (listViDeo != null && !listViDeo.isEmpty()) {
+			if  (listViDeo != null && !listViDeo.isEmpty()) {
 			} else {
 				System.out.println("List is empty or null");
 			}

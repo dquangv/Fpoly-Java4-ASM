@@ -9,7 +9,8 @@ private static EntityManagerFactory factory;
 	
 	static public EntityManager getEntityManager() {
 		if (factory == null || !factory.isOpen()) {
-			factory = Persistence.createEntityManagerFactory("java4_asm");
+			factory = Persistence.createEntityManagerFactory("java4-asm");
+
 		}
 		
 		return factory.createEntityManager();
